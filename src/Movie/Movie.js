@@ -2,12 +2,13 @@ import React from 'react';
 import './Movie.css';
 
 function Movie(props) {
-    const {backdroundPath} = props.movie
+    const {backdrop_path} = props.movie
+    console.log({backdrop_path})
     return (
         <section 
         className='movie-card'
         style={ {
-            backgroundImage: 'url(' + 'backgroundPath' + ')'
+            backgroundImage: 'url(' + backdrop_path + ')'
         } }>
 
         </section>

@@ -1,5 +1,6 @@
 import React from 'react';
-import Movie from '../Movie/Movie'
+import Movie from '../Movie/Movie';
+import './Movies.css'
 
 function Movies(props) {
     if (props.moviesData) {
@@ -11,7 +12,7 @@ function Movies(props) {
         })
         console.log(moviesInfo)
         return (
-            <section>{moviesInfo}</section>
+            <section className='main-page'>{moviesInfo}</section>
         )
         
     } else {
