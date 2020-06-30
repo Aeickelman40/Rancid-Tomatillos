@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import tomato from '../images/tomImage.png';
+import Movies from '../Movies/Movies';
 import './App.css';
 import { render } from '@testing-library/react';
 
@@ -42,6 +43,7 @@ getMovieData() {
           <button>Home</button>
         </section>
       </header>
+      <Movies moviesData={this.state.movies} />
     </div>
   );
   }
