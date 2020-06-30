@@ -1,0 +1,33 @@
+.App {
+  text-align: center;
+}
+
+.main-header {
+  align-items: center;
+  height: 15vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+img {
+  height: 14vh;
+}
+
+h2 {
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  height: 100%;
+  justify-content: space-around;
+  align-items: center;
+  width: 40%;
+}
+
+button {
+  background: #fff;
+  height: 40%;
+  width: 40%;
+}
