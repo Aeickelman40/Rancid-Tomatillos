@@ -31,3 +31,7 @@
 * How do you know if a project is successful? How can we achieve that as a group?
 
 * How will we recognize each other's successes and celebrate them?
+
+*
+
+*
