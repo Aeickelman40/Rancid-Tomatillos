@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import tomato from '../images/tomImage.png';
 import Movies from '../Movies/Movies';
+import ErrorHandlePage from '../ErrorHandlePage/ErrorHandlePage';
+import Header from '../Header/Header'
 import './App.css';
 import { render } from '@testing-library/react';
 
@@ -24,7 +25,8 @@ getMovieData() {
       this.setState({ movies: movies, error: '' })
     })
   .catch(error => {
-    console.error(error)
+    console.log(error)
+    this.setState({error: 'Error Message Goes Here'})
    })
   }
 
@@ -33,19 +35,14 @@ getMovieData() {
   }
 
   render() {
-  return (
+    return this.state.movies ?
     <div className="App">
-      <header className="main-header">
-        <img src={tomato}></img>
-        <h2>Hello Guest</h2>
-        <section className="button-container">
-          <button>Login</button>
-          <button>Home</button>
-        </section>
-      </header>
+      <Header />
       <Movies moviesData={this.state.movies} />
     </div>
-  );
+    :
+    <ErrorHandlePage />
+
   }
 }
 
