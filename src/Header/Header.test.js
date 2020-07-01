@@ -6,6 +6,6 @@ test('renders learn react link', () => {
     const {
         getByText
     } = render( < Header / > );
-    const linkElement = getByText(/Hello Guest/i);
-    expect(linkElement).toBeInTheDocument();
+    const welcomeMessage = getByText(/Hello Guest/i);
+    expect(welcomeMessage).toBeInTheDocument();
 });

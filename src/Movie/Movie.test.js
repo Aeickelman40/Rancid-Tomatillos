@@ -7,6 +7,6 @@ test('renders learn react link', () => {
     const {
         getByText
     } = render( < Movie /> );
-    const linkElement = getByText(/learn react/i);
+    const linkElement = getByText(/Onward/i);
     expect(linkElement).toBeInTheDocument();
 });

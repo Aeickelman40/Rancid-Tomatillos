@@ -6,7 +6,18 @@
     margin-top: 2%;
 }
 
+.image-container {
+
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
 .movie-description {
-    color: #fff;
-    /* display: none; */
+    color: white;
+    z-index: 2;
+}
+
+.movie-card:hover {
+    z-index: -1;
 }
