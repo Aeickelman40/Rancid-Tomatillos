@@ -1,0 +1,1 @@
+// Use asyn/await for all fetch calls

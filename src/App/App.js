@@ -3,7 +3,8 @@ import Movies from '../Movies/Movies';
 import ErrorHandlePage from '../ErrorHandlePage/ErrorHandlePage';
 import Header from '../Header/Header'
 import './App.css';
-import { render } from '@testing-library/react';
+// import { render } from '@testing-library/react';
+// import { Route, NavLink} from 'react-router-dom';
 
 class App extends Component {
   constructor() {
