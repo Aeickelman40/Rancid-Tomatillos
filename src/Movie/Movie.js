@@ -7,6 +7,7 @@ function Movie(props) {
         < section className = 'movie-card'>
             <section
             className='image-container'
+            data-testid='background'
             style={ {
                 backgroundImage: 'url(' + backdrop_path + ')',
                 backgroundSize: 'contain',
