@@ -37,6 +37,8 @@ getMovieData() {
   }
 
   clickHandler = () => {
+    console.log('hi');
+    
     return <LogInPage />
   }
 
