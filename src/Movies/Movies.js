@@ -10,9 +10,12 @@ function Movies(props) {
             key={movie.id}
             movie={movie}/>
         })
-        console.log(moviesInfo)
         return (
-            <section className='main-page'>{moviesInfo}</section>
+            <section 
+                className='main-page'
+                data-testid='all-movies'>
+                { moviesInfo }
+            </section>
         )
         
     } else {

@@ -1,8 +1,7 @@
 import React from 'react'
 
 function ErrorHandlePage(props) {
-    console.log(props)
-    return ( <h1>This is the Error Page</h1>
+    return ( <h1 data-testid='error-page'>This is the Error Page</h1>
     )
 }
 
