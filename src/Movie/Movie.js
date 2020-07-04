@@ -4,7 +4,7 @@ import './Movie.css';
 function Movie(props) {
     const {backdrop_path, release_date, average_rating, title} = props.movie
     return (
-        < section className = 'movie-card'>
+        <section className = 'movie-card'>
             <section
             className='image-container'
             data-testid='background'
