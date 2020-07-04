@@ -1,11 +1,19 @@
 import React from 'react';
-import {render} from '@testing-library/react';
+import {render, getByTestId} from '@testing-library/react';
+import '@testing-library/jest-dom'
 import ErrorHandlePage from './ErrorHandlePage';
 
-test('renders learn react link', () => {
-    const {
-        getByText
-    } = render( < ErrorHandlePage / > );
-    const linkElement = getByText(/learn react/i);
-    expect(linkElement).toBeInTheDocument();
-});
+describe('ErrorHandlePage', () => {
+    
+
+    it('should be true', () => {
+        expect(true).toEqual(true)
+    })
+
+    it('should render Header to the page', () => {
+        const { getByTestId } = render(<ErrorHandlePage />)
+        const  errorPage = getByTestId('error-page')
+        expect(errorPage).toBeInTheDocument()  
+    })
+})
+

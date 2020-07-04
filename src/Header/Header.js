@@ -7,16 +7,18 @@ import LogInPage from '../LogInPage/LogInPage';
 import App from '../App/App';
 
 
-function Header() {
+function Header(props) {    
     return (
-        <header className = "main-header">
+        <header 
+            className = "main-header"
+        >
             <img src={tomato} alt="cartoon tomato"></img> 
             <h2 > Hello Guest</h2> 
             <section className = "button-container">
             {/* {* <button>Login</button> */
             /* <button>Home</button>  */}
             <NavLink to = '/login' className = 'login-page'>
-                <button>Login</button>
+                <button onClick = { props.onClick }>Login</button>
             </NavLink>
             <NavLink to = '/' className = 'home-page' >
                 <button>Home</button>
