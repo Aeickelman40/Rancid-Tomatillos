@@ -3,6 +3,7 @@ import Movies from '../Movies/Movies';
 import ErrorHandlePage from '../ErrorHandlePage/ErrorHandlePage';
 import Header from '../Header/Header'
 import './App.css';
+import LogInPage from '../LogInPage/LogInPage';
 // import { render } from '@testing-library/react';
 // import { Route, NavLink} from 'react-router-dom';
 
@@ -35,10 +36,14 @@ getMovieData() {
     this.getMovieData();
   }
 
+  clickHandler = () => {
+    return <LogInPage />
+  }
+
   render() {
     return this.state.movies ?
     <div className="App">
-      <Header />
+      <Header onClick = { this.clickHandler } />
       <Movies moviesData={this.state.movies} />
     </div>
     :

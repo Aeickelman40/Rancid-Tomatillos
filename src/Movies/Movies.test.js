@@ -37,4 +37,8 @@ describe ('Movies', () => {
         const movie = getByTestId('all-movies');
         expect(movie).toBeInTheDocument()
     })
+
+    it('should render loading when page is loading', () => {
+        
+    })
 })

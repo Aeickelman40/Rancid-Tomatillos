@@ -14,7 +14,7 @@ function Movies(props) {
             <section 
                 className='main-page'
                 data-testid='all-movies'>
-                {moviesInfo}
+                { moviesInfo }
             </section>
         )
         
