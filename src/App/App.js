@@ -4,13 +4,14 @@ import ErrorHandlePage from '../ErrorHandlePage/ErrorHandlePage';
 import Header from '../Header/Header'
 import './App.css';
 import LogInPage from '../LogInPage/LogInPage';
-// import { render } from '@testing-library/react';
-// import { Route, NavLink} from 'react-router-dom';
+import { Route, NavLink} from 'react-router-dom';
 
 class App extends Component {
   constructor() {
    super();
-   this.state = {}; 
+   this.state = {
+      loginClicked: false
+   };
   }
 
 getMovieData() {
@@ -37,17 +38,19 @@ getMovieData() {
   }
 
   clickHandler = () => {
-    console.log('hi');
-    
-    return <LogInPage />
+    this.setState({ loginClicked: true });    
   }
-
+  
   render() {
     return this.state.movies ?
-    <div className="App">
-      <Header onClick = { this.clickHandler } />
-      <Movies moviesData={this.state.movies} />
-    </div>
+    <main className="App">
+      <Header 
+        onClick = { this.clickHandler } 
+        loginClicked = { this.state.loginClicked }
+      />
+      <Route exact path = '/' render = { () =>  <Movies moviesData={ this.state.movies} /> }/>
+      <Route exact path = '/login' render =  { () => <LogInPage /> }/>
+    </main>
     :
     <ErrorHandlePage />
 
