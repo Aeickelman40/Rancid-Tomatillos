@@ -12,3 +12,5 @@
 - [ ] Movies.js/Movies.css/Movies.test.js
 - [ ] Header.js/Header.css/Header.test.js
 - [ ] ErrorHandlePage.js/ErrorHandlePage.css/ErrorHandlePage.test.js
+- [ ] FetchedData.js/FetchedData.css/FetchedData.test.js
+- [ ] LogInPage.js/LogInPage.css/LogInPage.test.js
