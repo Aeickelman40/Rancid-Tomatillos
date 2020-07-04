@@ -22,8 +22,7 @@ describe('Movie', () => {
     })
 
     it('should render movie to the page', () => {
-        const { getByText } = render(<Movie movie={ movie }/>
-            )
+        const { getByText } = render(<Movie movie={ movie }/>)
         const title = getByText('exampleTitle')
         const averageRating = getByText('Average Rating:4')  
         const releaseDate = getByText('Release Date:2001-01-01')
