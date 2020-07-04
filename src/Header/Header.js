@@ -37,11 +37,11 @@ function Header(props) {
              <img src={tomato} alt="cartoon tomato"></img> 
              <h2>Hello Guest</h2> 
              <section className = "button-container">
-                 {//Is this syntax correct?}
+                 
                 <NavLink to = '/login'  href='/login' className = 'login-page'/>
-               <a href='/login' className='login-page'>
+                <a href='/login' className='login-page'>
                    <button>Login</button>
-               </a>
+                </a>
                 <NavLink to = '/' className = 'home-page' >
                    <button>Home</button>
                 </NavLink>
