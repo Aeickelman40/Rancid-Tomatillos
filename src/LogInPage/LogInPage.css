@@ -1,0 +1,32 @@
+.login-page {
+    height: 80%;
+    width: 80%;
+}
+
+.main-login {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    height: 40%;
+    width: 30%;
+    border: 1px solid blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+input {
+    height: 5%;
+    width: 25%;
+}
+
+button {
+    height: 5%;
+    width: 15%;
+}
