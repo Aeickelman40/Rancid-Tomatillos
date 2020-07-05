@@ -7,32 +7,9 @@ import LogInPage from '../LogInPage/LogInPage';
 import App from '../App/App';
 
 
-// function Header(props) {
-//     console.log(props.loginClicked)           
-//     return (
-//         <BrowserRouter>
-//             <section 
-//                 className = "main-header"
-//             >
-//              <img src={tomato} alt="cartoon tomato"></img> 
-//              <h2>Hello Guest</h2> 
-//              <section className = "button-container">
-//                    <button onClick = { props.onClick }>
-//                         <NavLink to = '/login' className = 'login-page'></NavLink>
-//                         Login
-//                    </button>
-//                 {/* Home page button currently runs a render loop */}
-//                 <NavLink to = '/' className = 'home-page' >
-//                    <button>Home</button>
-//                 </NavLink>
-//                 </section>
-//             </section>
-//         </BrowserRouter>
-//     )
-// }
 function Header(props) {    
-    console.log('mad props', props);
     const { onClick } = props
+    console.log('mad props', props)
     return (
         <BrowserRouter>
             <header className = "main-header">
@@ -42,14 +19,9 @@ function Header(props) {
                  <button className='login-button' onClick={ props }>
                      <NavLink to='/login' className='login'>Login</NavLink>
                  </button>
-                 
-                {/* <NavLink to = '/login'  href='/login' className = 'login-page'/>
-                <a href='/login' className='login-page'>
-                   <button>Login</button>
-                </a>
-                <NavLink to = '/' className = 'home-page' >
-                   <button>Home</button>
-                </NavLink> */}
+                 <button className='home-button' onClick={ props }>
+                     <NavLink to='/' className='home'>Home</NavLink>
+                 </button>
                 </section>
             </header>
         </BrowserRouter>
