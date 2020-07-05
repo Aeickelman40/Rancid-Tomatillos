@@ -31,20 +31,25 @@ import App from '../App/App';
 //     )
 // }
 function Header(props) {    
+    console.log('mad props', props);
+    const { onClick } = props
     return (
         <BrowserRouter>
             <header className = "main-header">
              <img src={tomato} alt="cartoon tomato"></img> 
              <h2>Hello Guest</h2> 
              <section className = "button-container">
+                 <button className='login-button' onClick={ props }>
+                     <NavLink to='/login' className='login'>Login</NavLink>
+                 </button>
                  
-                <NavLink to = '/login'  href='/login' className = 'login-page'/>
+                {/* <NavLink to = '/login'  href='/login' className = 'login-page'/>
                 <a href='/login' className='login-page'>
                    <button>Login</button>
                 </a>
                 <NavLink to = '/' className = 'home-page' >
                    <button>Home</button>
-                </NavLink>
+                </NavLink> */}
                 </section>
             </header>
         </BrowserRouter>
