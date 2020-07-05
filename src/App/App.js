@@ -15,39 +15,12 @@ class App extends Component {
    };
   }
 
-// getMovieData() {
-//   fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
-//     .then(response => {
-//       if (response.ok) {
-//         return response.json()
-//       } else {
-//         throw new Error({ ...response })
-//       }
-//     })
-//     .then(movies => {
-//       console.log(movies);
-//       this.setState({ movies: movies, error: '' })
-//     })
-//   .catch(error => {
-//     console.log(error)
-//     this.setState({error: 'Error Message Goes Here'})
-//    })
-//   }
-
-  // componentDidMount() {
-  //   let movieData = <FetchedData />
-  //   console.log(movieData.FetchedData)
-  //   this.setState({ movies: movieData, error: '' })
-  //   console.log(this.state)
-  //   // this.getMovieData();
-  // }
-
-    componentDidMount = async () => {
+  componentDidMount = async () => {
     try {
       const movies = await getMovies();
       this.setState({ movies: movies });
     } catch(error) {
-      this.setState({error: error});
+      this.setState({ error: error });
     }
   }
 
@@ -56,15 +29,11 @@ class App extends Component {
   }
   
   render() {
-    console.log(this.state)
     return this.state.movies ?
     <main className="App">
-      {/* <Header 
-        onClick = { this.clickHandler } 
-        loginClicked = { this.state.loginClicked }
-      /> */}
       <Route exact path = '/' render = { () =>  <Header onClick={ this.clickHandler } /> }/>
       <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} /> }/>
+      <Route exact path = '/login' render = { () =>  <Header onClick={ this.clickHandler } /> }/>
       <Route exact path = '/login' render =  { () => <LogInPage /> }/>
     </main>
     :
