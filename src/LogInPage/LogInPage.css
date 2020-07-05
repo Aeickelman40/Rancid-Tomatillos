@@ -12,9 +12,11 @@
 }
 
 .login-form {
+    background-color: darkgrey;
+    border-radius: 5px;
+    box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
     height: 40%;
     width: 30%;
-    border: 1px solid blue;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -22,11 +24,15 @@
 }
 
 input {
+    border-radius: 5px;
+    padding: 2%;
     height: 5%;
+    font-size: 18px;
     width: 25%;
 }
 
 button {
-    height: 5%;
-    width: 15%;
+    border-radius: 5px;
+    height: 10%;
+    width: 20%;
 }
