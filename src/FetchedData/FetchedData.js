@@ -9,7 +9,7 @@ export const getMovies = async () => {
     return allMovies;
 };
 
-export const postLogin = async (email, password) => {
+export const postLogin = async (email, password) => {   
     const response = await fetch(
         "https://rancid-tomatillos.herokuapp.com/api/v2/login", {
             "method": "POST",
