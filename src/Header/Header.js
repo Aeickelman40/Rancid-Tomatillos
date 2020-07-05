@@ -7,14 +7,14 @@ import LogInPage from '../LogInPage/LogInPage';
 import App from '../App/App';
 
 
-function Header(props) {    
-    const { userName } = props.userInfo
-    console.log('mad props', userName)
+function Header(props) { 
+    console.log(props)
+    if (props.appState.isLoggedIn === false) { 
     return (
         <BrowserRouter>
             <header className = "main-header">
              <img src={tomato} alt="cartoon tomato"></img> 
-    <h2>Hello { userName }</h2> 
+    <h2>Welcome to Rancid Tomatillos (not affiliated with Rotten Tomatoes)</h2> 
              <section className = "button-container">
                  <button className='login-button' onClick={ props }>
                      <NavLink to='/login' className='login'>Login</NavLink>
@@ -26,6 +26,24 @@ function Header(props) {
             </header>
         </BrowserRouter>
     )
+    } else {
+    return (
+             <BrowserRouter>
+            <header className = "main-header">
+             <img src={tomato} alt="cartoon tomato"></img> 
+    <h2>Welcome back to Rancid Tomatillos (not affiliated with Rotten Tomatoes)</h2> 
+             <section className = "button-container">
+                 <button className='logout-button' onClick={ props }>
+                     <NavLink to='/' className='logout'>Logout</NavLink>
+                 </button>
+                 <button className='home-button' onClick={ props }>
+                     <NavLink to='/' className='home'>Home</NavLink>
+                 </button>
+                </section>
+            </header>
+        </BrowserRouter>
+    )
+    } 
 }
 
 export default Header
