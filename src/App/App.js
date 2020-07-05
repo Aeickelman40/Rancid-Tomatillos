@@ -12,6 +12,11 @@ class App extends Component {
    super();
    this.state = {
       loginClicked: false,
+      userInfo: {
+        userEmail: '',
+        userId: '',
+        userName: 'Guest',
+      }
    };
   }
 
@@ -19,22 +24,27 @@ class App extends Component {
     try {
       const movies = await getMovies();
       this.setState({ movies: movies });
+      // this.setState({ userName })
     } catch(error) {
       this.setState({ error: error });
     }
   }
 
   clickHandler = () => {
-    this.setState({ loginClicked: true });    
+    this.setState({ 
+      loginClicked: true, 
+    });
   }
   
   render() {
+    console.log('app render');
+    
     return this.state.movies ?
     <main className="App">
-      <Route exact path = '/' render = { () =>  <Header onClick={ this.clickHandler } /> }/>
+      <Route path = '/' render = { () =>  <Header onClick={ this.clickHandler } userInfo={ this.state.userInfo } /> }/>
       <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} /> }/>
-      <Route exact path = '/login' render = { () =>  <Header onClick={ this.clickHandler } /> }/>
-      <Route exact path = '/login' render =  { () => <LogInPage /> }/>
+      <Route exact path = '/login' render =  { () => <LogInPage userInfo={ this.state.userInfo }  /> }/>
+      <Route exact path = '/users/63' render =  { () => <Movies movies={ this.state.movies} /> }/>
     </main>
     :
     <ErrorHandlePage />

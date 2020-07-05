@@ -8,13 +8,13 @@ import App from '../App/App';
 
 
 function Header(props) {    
-    const { onClick } = props
-    console.log('mad props', props)
+    const { userName } = props.userInfo
+    console.log('mad props', userName)
     return (
         <BrowserRouter>
             <header className = "main-header">
              <img src={tomato} alt="cartoon tomato"></img> 
-             <h2>Hello Guest</h2> 
+    <h2>Hello { userName }</h2> 
              <section className = "button-container">
                  <button className='login-button' onClick={ props }>
                      <NavLink to='/login' className='login'>Login</NavLink>
