@@ -44,10 +44,11 @@ getMovieData() {
   render() {
     return this.state.movies ?
     <main className="App">
-      <Header 
+      {/* <Header 
         onClick = { this.clickHandler } 
         loginClicked = { this.state.loginClicked }
-      />
+      /> */}
+      <Route exact path = '/' render = { () =>  <Header onClick={ this.clickHandler } /> }/>
       <Route exact path = '/' render = { () =>  <Movies moviesData={ this.state.movies} /> }/>
       <Route exact path = '/login' render =  { () => <LogInPage /> }/>
     </main>
