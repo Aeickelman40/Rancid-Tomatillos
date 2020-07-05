@@ -64,7 +64,7 @@ class App extends Component {
         loginClicked = { this.state.loginClicked }
       /> */}
       <Route exact path = '/' render = { () =>  <Header onClick={ this.clickHandler } /> }/>
-      <Route exact path = '/' render = { () =>  <Movies moviesData={ this.state.movies} /> }/>
+      <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} /> }/>
       <Route exact path = '/login' render =  { () => <LogInPage /> }/>
     </main>
     :
