@@ -3,9 +3,9 @@ import Movie from '../Movie/Movie';
 import './Movies.css'
 
 function Movies(props) {
-    console.log(props.movies)
-    if (props.movies) {
-        const {movies} = props.movies;
+    console.log(props)
+    if (props) {
+        const {movies} = props;
         const moviesInfo = movies.map(movie => {
             return <Movie 
             key={movie.id}
