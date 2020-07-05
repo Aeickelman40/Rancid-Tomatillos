@@ -12,6 +12,7 @@ class App extends Component {
    super();
    this.state = {
       loginClicked: false,
+      isLoggedIn: false,
       userInfo: {
         userEmail: '',
         userId: '',
@@ -32,18 +33,24 @@ class App extends Component {
 
   clickHandler = () => {
     this.setState({ 
-      loginClicked: true, 
+      loginClicked: true
+
     });
   }
   
-  render() {
-    console.log('app render');
-    
+  userLoggedIn = () => {
+    this.setState({
+      isLoggedIn: true
+    })
+  }
+
+  render() {  
+    console.log(this.state)  
     return this.state.movies ?
     <main className="App">
-      <Route path = '/' render = { () =>  <Header onClick={ this.clickHandler } userInfo={ this.state.userInfo } /> }/>
+      <Route path = '/' render = { () =>  <Header onClick={ this.clickHandler } appState={ this.state } /> }/>
       <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} /> }/>
-      <Route exact path = '/login' render =  { () => <LogInPage userInfo={ this.state.userInfo }  /> }/>
+      <Route exact path = '/login' render =  { () => <LogInPage userInfo={ this.state.userInfo } updateAppState={ this.userLoggedIn } /> }/>
       <Route exact path = '/users/63' render =  { () => <Movies movies={ this.state.movies} /> }/>
     </main>
     :

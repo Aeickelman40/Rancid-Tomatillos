@@ -3,9 +3,6 @@ import './LogInPage.css';
 import { postLogin } from '../FetchedData/FetchedData'
 import { NavLink } from 'react-router-dom';
 
-
-
-
 class LogInPage extends Component {
     constructor(props) {
         super(props)
@@ -14,6 +11,7 @@ class LogInPage extends Component {
             password: '', 
             userName: props.userInfo.userName,
             userId: props.userInfo.userId,
+            updateAppState: props.updateAppState
         }
     }
 
@@ -23,7 +21,8 @@ class LogInPage extends Component {
     }
 
     clickHandler = async (event) => {
-        event.preventDefault()        
+        event.preventDefault()  
+        this.state.updateAppState();
         const { email, password } = this.state
         try {
             const login = await postLogin(email, password);    
@@ -36,8 +35,7 @@ class LogInPage extends Component {
         
         
         render () {     
-            console.log('login render');
-               
+            console.log('login render');       
             return (
                 <section className="main-login">
                 <form className = 'login-form'>
