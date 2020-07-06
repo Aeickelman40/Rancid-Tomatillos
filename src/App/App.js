@@ -34,7 +34,6 @@ class App extends Component {
   clickHandler = () => {
     this.setState({ 
       loginClicked: true
-
     });
   }
   
@@ -44,13 +43,22 @@ class App extends Component {
     })
   }
 
+  appState = (userData) => {   
+    this.setState({ 
+      userInfo: {
+        userId: userData.userId ,
+        userName: userData.userName
+      }
+    })
+  }
+
   render() {  
     console.log(this.state)  
     return this.state.movies ?
     <main className="App">
       <Route path = '/' render = { () =>  <Header onClick={ this.clickHandler } appState={ this.state } /> }/>
       <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} /> }/>
-      <Route exact path = '/login' render =  { () => <LogInPage userInfo={ this.state.userInfo } updateAppState={ this.userLoggedIn } /> }/>
+      <Route exact path = '/login' render =  { () => <LogInPage userInfo={ this.state.userInfo } updateAppState={ this.userLoggedIn } appState={ this.appState }/> }/>
       <Route exact path = '/users/63' render =  { () => <Movies movies={ this.state.movies} /> }/>
     </main>
     :

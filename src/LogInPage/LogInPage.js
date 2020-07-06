@@ -11,7 +11,8 @@ class LogInPage extends Component {
             password: '', 
             userName: props.userInfo.userName,
             userId: props.userInfo.userId,
-            updateAppState: props.updateAppState
+            updateAppState: props.updateAppState,
+            UpdateAppState: props.appState
         }
     }
 
@@ -25,8 +26,9 @@ class LogInPage extends Component {
         this.state.updateAppState();
         const { email, password } = this.state
         try {
-            const login = await postLogin(email, password);    
+            const login = await postLogin(email, password);  
             const {id, name } = login.user
+            this.state.UpdateAppState({userId: id, userName: name})
             this.setState({ userId: id, userName: name })                        
             } catch(error) {
                 this.setState({ error: error })
@@ -35,7 +37,7 @@ class LogInPage extends Component {
         
         
         render () {     
-            console.log('login render');       
+            console.log(this.state.UpdateAppState);       
             return (
                 <section className="main-login">
                 <form className = 'login-form'>

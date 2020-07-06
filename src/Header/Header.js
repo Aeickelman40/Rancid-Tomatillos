@@ -8,13 +8,15 @@ import App from '../App/App';
 
 
 function Header(props) { 
-    console.log(props)
+    const {userInfo}=props.appState
+    console.log(userInfo);
+    
     if (props.appState.isLoggedIn === false) { 
     return (
         <BrowserRouter>
             <header className = "main-header">
              <img src={tomato} alt="cartoon tomato"></img> 
-    <h2>Welcome to Rancid Tomatillos (not affiliated with Rotten Tomatoes)</h2> 
+    <h2>Welcome {userInfo.userName}</h2> 
              <section className = "button-container">
                  <button className='login-button' onClick={ props }>
                      <NavLink to='/login' className='login'>Login</NavLink>
@@ -31,7 +33,7 @@ function Header(props) {
              <BrowserRouter>
             <header className = "main-header">
              <img src={tomato} alt="cartoon tomato"></img> 
-    <h2>Welcome back to Rancid Tomatillos (not affiliated with Rotten Tomatoes)</h2> 
+    <h2>Welcome back {userInfo.userName}</h2> 
              <section className = "button-container">
                  <button className='logout-button' onClick={ props }>
                      <NavLink to='/' className='logout'>Logout</NavLink>
