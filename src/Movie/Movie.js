@@ -9,8 +9,7 @@ function Movie(props) {
     // console.log(onClick);
     
     return (
-        <BrowserRouter>
-                  <NavLink to={`${/movie/}${id}`} className='expanded-movie'>
+            <NavLink to={`${/movie/}${id}`}>
               <button name='movieId' value={ id } className = 'movie-card' onClick={ (event) => onClick(event) }>
                   <section
                  className='image-container'
@@ -29,8 +28,7 @@ function Movie(props) {
                  </section>
                   
                   </button>
-                  </NavLink>
-        </BrowserRouter>
+            </NavLink>
     )    
 }
 

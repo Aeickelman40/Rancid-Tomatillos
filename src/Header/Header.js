@@ -8,43 +8,43 @@ import App from '../App/App';
 
 
 function Header(props) { 
+
     const {userInfo}=props.appState
-    const clickHandler = props.onClick
+    const { onClick, logoutButton } = props
     
     if (props.appState.isLoggedIn === false) { 
     return (
-        <BrowserRouter>
+
             <header className = "main-header">
              <img src={tomato} alt="cartoon tomato"></img> 
     <h2>Welcome {userInfo.userName}</h2> 
              <section className = "button-container">
-                 <button name="loginClicked" className='login-button' onClick={ props }>
+                 <button name="loginClicked" className='login-button' onClick={ onClick }>
                      <NavLink to='/login' className='login' name="loginClicked">
                          Login</NavLink>
                  </button>
-                 <button name="home" className='home-button' onClick={ props }>
+                 <button name="home" className='home-button' onClick={ onClick }>
                      <NavLink to='/' className='home'>Home</NavLink>
                  </button>
                 </section>
             </header>
-        </BrowserRouter>
     )
     } else {
     return (
-             <BrowserRouter>
+     
             <header className = "main-header">
              <img src={tomato} alt="cartoon tomato"></img> 
     <h2>Welcome back {userInfo.userName}</h2> 
              <section className = "button-container">
-                 <button name="loginClicked" className='logout-button' onClick={ (event) => clickHandler(event) }>
-                     <NavLink to='/' className='logout'>Logout</NavLink>
+                 <button name="loginClicked" className='logout-button' onClick={ logoutButton }>
+                     <NavLink to='/' className='logout'  name="loginClicked">Logout</NavLink>
                  </button>
-                 <button name="home" className='home-button' onClick={ props }>
-                     <NavLink to='/' className='home'>Home</NavLink>
+                 {/* Eventually add ratings component to link on this button in iteration 4 */}
+                 <button name="ratings" className='my-ratings' onClick={ onClick }>
+                     <NavLink to='/' className='home'>My Ratings</NavLink>
                  </button>
                 </section>
             </header>
-        </BrowserRouter>
     )
     } 
 }
