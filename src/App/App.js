@@ -27,18 +27,13 @@ class App extends Component {
     try {
       const movies = await getMovies();
       this.setState({ movies: movies });
-      // this.setState({ userName })
     } catch(error) {
       this.setState({ error: error });
     }
   }
 
   clickHandler = (event) => {
-    console.log('hi')
     const { name, value } = event.target
-    console.log(value);
-    
-    // const name = event.target.name
     this.setState({ 
       [name]: value
     });
@@ -76,7 +71,7 @@ class App extends Component {
       <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} onClick={ this.clickHandler }/> }/>
       <Route exact path = '/login' render =  { () => <LogInPage userInfo={ this.state.userInfo } updateAppState={ this.userLoggedIn } appState={ this.appState }/> }/>
       <Route exact path = '/users/63' render =  { () => <Movies movies={ this.state.movies} onClick={ this.clickHandler } /> }/>
-      <Route exact path = '/movie/:id' render =  { ({match}) => <ExpandedMovie {...match}/>} />
+      <Route exact path = '/movie/:id' render =  { ({match}) => <ExpandedMovie {...match} /> } />
 
     </main>
     :

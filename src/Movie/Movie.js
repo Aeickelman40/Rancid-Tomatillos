@@ -2,18 +2,18 @@ import React from 'react';
 import './Movie.css';
 import { NavLink, BrowserRouter } from 'react-router-dom'
 function Movie(props) {
-    // console.log(props)
-
     const {id, backdrop_path, release_date, average_rating, title} = props.movie
     const { onClick } = props
-    // console.log(onClick);
-    
     return (
             <NavLink to={`${/movie/}${id}`}>
               <button name='movieId' value={ id } className = 'movie-card' onClick={ (event) => onClick(event) }>
                   <section
                  className='image-container'
                  name={ id }
+                 backdrop-image= { backdrop_path }
+                 release-date= { release_date }
+                 average-rating= { average_rating }
+                 title={ title }
                  data-testid='background'
                     style={ {
                         backgroundImage: 'url(' + backdrop_path + ')',
