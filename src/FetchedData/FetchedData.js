@@ -1,4 +1,4 @@
-// Use asyn/await for all fetch calls
+// Use async/await for all fetch calls
 
 export const getMovies = async () => {
     const response = await fetch(

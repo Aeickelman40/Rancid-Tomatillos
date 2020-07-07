@@ -9,7 +9,7 @@ import App from '../App/App';
 
 function Header(props) { 
     const {userInfo}=props.appState
-    console.log(userInfo);
+    const clickHandler = props.onClick
     
     if (props.appState.isLoggedIn === false) { 
     return (
@@ -18,10 +18,11 @@ function Header(props) {
              <img src={tomato} alt="cartoon tomato"></img> 
     <h2>Welcome {userInfo.userName}</h2> 
              <section className = "button-container">
-                 <button className='login-button' onClick={ props }>
-                     <NavLink to='/login' className='login'>Login</NavLink>
+                 <button name="loginClicked" className='login-button' onClick={ props }>
+                     <NavLink to='/login' className='login' name="loginClicked">
+                         Login</NavLink>
                  </button>
-                 <button className='home-button' onClick={ props }>
+                 <button name="home" className='home-button' onClick={ props }>
                      <NavLink to='/' className='home'>Home</NavLink>
                  </button>
                 </section>
@@ -35,10 +36,10 @@ function Header(props) {
              <img src={tomato} alt="cartoon tomato"></img> 
     <h2>Welcome back {userInfo.userName}</h2> 
              <section className = "button-container">
-                 <button className='logout-button' onClick={ props }>
+                 <button name="loginClicked" className='logout-button' onClick={ (event) => clickHandler(event) }>
                      <NavLink to='/' className='logout'>Logout</NavLink>
                  </button>
-                 <button className='home-button' onClick={ props }>
+                 <button name="home" className='home-button' onClick={ props }>
                      <NavLink to='/' className='home'>Home</NavLink>
                  </button>
                 </section>

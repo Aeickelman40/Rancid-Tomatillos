@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './LogInPage.css';
 import { postLogin } from '../FetchedData/FetchedData'
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class LogInPage extends Component {
     constructor(props) {
@@ -35,9 +35,9 @@ class LogInPage extends Component {
             }
         }
         
-        
-        render () {     
-            console.log(this.state.UpdateAppState);       
+        render () {   
+            console.log('login rendered');
+              
             return (
                 <section className="main-login">
                 <form className = 'login-form'>
@@ -58,7 +58,8 @@ class LogInPage extends Component {
                     <button
                         onClick={ this.clickHandler  }
                     >
-                    <NavLink to='/users/63' className='user-page'>Login</NavLink>
+                    <Link to='/users/63' className='user-page'></Link>
+                    Login
                     </button>
                 </form>
             </section>

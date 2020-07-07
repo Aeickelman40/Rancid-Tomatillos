@@ -9,7 +9,9 @@ function Movies(props) {
         const moviesInfo = movies.map(movie => {
             return <Movie 
             key={movie.id}
-            movie={movie}/>
+            movie={movie}
+            onClick={props.onClick}
+            />
         })
         return (
             <section 

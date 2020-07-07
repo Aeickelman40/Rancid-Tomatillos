@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Movies from '../Movies/Movies';
 import ErrorHandlePage from '../ErrorHandlePage/ErrorHandlePage';
 import Header from '../Header/Header'
+import ExpandedMovie from '../ExpandedMovie/ExpandedMovie'
 import './App.css';
 import LogInPage from '../LogInPage/LogInPage';
 import { Route, NavLink } from 'react-router-dom';
@@ -13,11 +14,12 @@ class App extends Component {
    this.state = {
       loginClicked: false,
       isLoggedIn: false,
+      isMovieExpanded: false,
       userInfo: {
         userEmail: '',
         userId: '',
         userName: 'Guest',
-      }
+      },
    };
   }
 
@@ -31,9 +33,14 @@ class App extends Component {
     }
   }
 
-  clickHandler = () => {
+  clickHandler = (event) => {
+    console.log('hi')
+    const { name, value } = event.target
+    console.log(value);
+    
+    // const name = event.target.name
     this.setState({ 
-      loginClicked: true
+      [name]: value
     });
   }
   
@@ -53,13 +60,15 @@ class App extends Component {
   }
 
   render() {  
-    console.log(this.state)  
+    console.log(this.state) 
+    const { movieId } = this.state
     return this.state.movies ?
     <main className="App">
       <Route path = '/' render = { () =>  <Header onClick={ this.clickHandler } appState={ this.state } /> }/>
-      <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} /> }/>
+      <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} onClick={ this.clickHandler }/> }/>
       <Route exact path = '/login' render =  { () => <LogInPage userInfo={ this.state.userInfo } updateAppState={ this.userLoggedIn } appState={ this.appState }/> }/>
-      <Route exact path = '/users/63' render =  { () => <Movies movies={ this.state.movies} /> }/>
+      <Route exact path = '/users/63' render =  { () => <Movies movies={ this.state.movies} onClick={ this.clickHandler } /> }/>
+      <Route exact path = {`${/movie/}${movieId}`} render =  { () => <ExpandedMovie /> }/>
     </main>
     :
     <ErrorHandlePage />
