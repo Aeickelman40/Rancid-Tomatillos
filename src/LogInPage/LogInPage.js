@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './LogInPage.css';
 import { postLogin } from '../FetchedData/FetchedData'
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class LogInPage extends Component {
     constructor(props) {
@@ -11,7 +11,8 @@ class LogInPage extends Component {
             password: '', 
             userName: props.userInfo.userName,
             userId: props.userInfo.userId,
-            updateAppState: props.updateAppState
+            updateAppState: props.updateAppState,
+            UpdateAppState: props.appState
         }
     }
 
@@ -25,17 +26,18 @@ class LogInPage extends Component {
         this.state.updateAppState();
         const { email, password } = this.state
         try {
-            const login = await postLogin(email, password);    
+            const login = await postLogin(email, password);  
             const {id, name } = login.user
+            this.state.UpdateAppState({userId: id, userName: name})
             this.setState({ userId: id, userName: name })                        
             } catch(error) {
                 this.setState({ error: error })
             }
         }
         
-        
-        render () {     
-            console.log('login render');       
+        render () {   
+            console.log('login rendered');
+              
             return (
                 <section className="main-login">
                 <form className = 'login-form'>
@@ -56,7 +58,8 @@ class LogInPage extends Component {
                     <button
                         onClick={ this.clickHandler  }
                     >
-                    <NavLink to='/users/63' className='user-page'>Login</NavLink>
+                    <Link to='/users/63' className='user-page'></Link>
+                    Login
                     </button>
                 </form>
             </section>

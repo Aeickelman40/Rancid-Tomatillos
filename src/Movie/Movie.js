@@ -1,25 +1,36 @@
 import React from 'react';
 import './Movie.css';
-
+import { NavLink, BrowserRouter } from 'react-router-dom'
 function Movie(props) {
-    const {backdrop_path, release_date, average_rating, title} = props.movie
+    // console.log(props)
+
+    const {id, backdrop_path, release_date, average_rating, title} = props.movie
+    const { onClick } = props
+    // console.log(onClick);
+    
     return (
-        <section className = 'movie-card'>
-            <section
-            className='image-container'
-            data-testid='background'
-            style={ {
-                backgroundImage: 'url(' + backdrop_path + ')',
-                backgroundSize: 'contain',
-                backgroundRepeat: 'no-repeat'
-            }}>
-            </section>
-            <section className='movie-description'>
-                    <h5>{title}</h5>
-                    <h5>Release Date:{release_date}</h5>
-                    <h5>Average Rating:{average_rating}</h5>
-            </section>
-        </section>
+        <BrowserRouter>
+                  <NavLink to={`${/movie/}${id}`} className='expanded-movie'>
+              <button name='movieId' value={ id } className = 'movie-card' onClick={ (event) => onClick(event) }>
+                  <section
+                 className='image-container'
+                 name={ id }
+                 data-testid='background'
+                    style={ {
+                        backgroundImage: 'url(' + backdrop_path + ')',
+                        backgroundSize: 'contain',
+                        backgroundRepeat: 'no-repeat'
+                 }}>
+                 <section className='movie-description'>
+                            <h5>{title}</h5>
+                            <h5>Release Date:{release_date}</h5>
+                            <h5>Average Rating:{average_rating}</h5>
+                 </section>
+                 </section>
+                  
+                  </button>
+                  </NavLink>
+        </BrowserRouter>
     )    
 }
 
