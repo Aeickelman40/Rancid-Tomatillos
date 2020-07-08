@@ -70,17 +70,14 @@ class App extends Component {
   }
 
   render() {  
-    console.log(this.state)
-    console.log('i rendered') 
-    const { movieId } = this.state
     return this.state.movies ?
     <main className="App">
       <Route path = '/' render = { () =>  <Header onClick={ this.clickHandler } appState={ this.state } logoutButton={ this.userLoggedIn} /> }/>
 
-      <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} onClick={ this.clickHandler }/> }/>
+      <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} onClick={ this.clickHandler } appState={ this.state }/> }/>
       <Route exact path = '/login' render =  { () => <LogInPage userInfo={ this.state.userInfo } updateAppState={ this.userLoggedIn } appState={ this.appState }/> }/>
-      <Route exact path = '/users/63' render =  { () => <Movies movies={ this.state.movies} onClick={ this.clickHandler } /> }/>
-      <Route exact path = '/movie/:id' render =  { ({match}) => <ExpandedMovie {...match} movieDoneLoading= { this.movieDidLoad } errorMessage = {this.state.error}/> } />
+      <Route exact path = '/users/63' render =  { () => <Movies movies={ this.state.movies} onClick={ this.clickHandler } appState={ this.state } /> }/>
+      <Route exact path = '/movie/:id' render =  { ({match}) => <ExpandedMovie {...match} movieDoneLoading= { this.movieDidLoad } appState = { this.state }/> } />
 
     </main>
     :
