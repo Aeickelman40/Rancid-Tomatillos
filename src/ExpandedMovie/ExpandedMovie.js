@@ -35,19 +35,20 @@ class ExpandedMovie extends Component {
                         backgroundImage: 'url(' + poster_path + ')',
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center',
                         height: '200px',
-                        width: '200px'
+                        width: '100%'
                         }}
                    > </section>
                    <h1>{title}</h1>
-                   <p>{overview}</p>
                    <h5>Tag Line:{tagline}</h5>
+                   <p>{overview}</p>
                    <h5>Release Date:{release_date}</h5>
                    <h5>Genres:{genres}</h5>
                    <h5>Budget:{budget}</h5>
                    <h5>Revenue:{revenue}</h5>
                    <h5>Runtime:{runtime}</h5>
-                   <h5>Average Rating:{average_rating}</h5>
+                   <h5>Average Rating:{Math.round(average_rating)}</h5>
                    <h5>Your Rating:{ yourRating } </h5>
                </section>
            )

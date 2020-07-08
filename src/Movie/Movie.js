@@ -25,15 +25,14 @@ function Movie(props) {
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat'
                  }}>
+                 </section>
                  <section className='movie-description'>
-                            <h5>{title}</h5>
-                            <h5>Release Date:{ release_date }</h5>
-                            <h5>Average Rating:{ average_rating }</h5>
-                            <h5>Your Rating:{ userRatings }</h5>
+                            <p className='title'>{title}</p>
+                            <p>Release Date:{ release_date }</p>
+                            <p>Average Rating:{ Math.round(average_rating) }</p>
+                            <p>Your Rating:{ userRatings }</p>
                  </section>
-                 </section>
-                  
-                  </button>
+                </button>
             </NavLink>
     )    
 }

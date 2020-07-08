@@ -5,15 +5,22 @@ a {
 }
 
 .movie-card {
+    box-shadow: 1px 1px 5px 0px #9a9a9a,
+    1px 2px 7px 0px #ededed;
+    border: none;
     cursor: pointer;
     height: 100%;
     width: 100%;
-    border: black 1px solid;
     margin-top: 2%;
 }
 
+.movie-card:hover {
+    box-shadow: 2px 2px 6px 2px #9a9a9a,
+    2px 3px 8px 2px #ededed;
+}
+
 .image-container {
-    height: 100%;
+    height: 50%;
     width: 100%;
     z-index: 1;
 }
@@ -21,10 +28,22 @@ a {
 .movie-description {
     background-color: lightblue;
     color: black;
-    font-size: 20px;
+    font-size: 10px;
+    height: 40%;
     z-index: 2;
+}
+
+.title {
+    margin-top: 0;
+}
+
+p {
+    margin: 1.5%;
 }
 
 .movie-card:hover {
     z-index: -1;
 }
+
+
+
