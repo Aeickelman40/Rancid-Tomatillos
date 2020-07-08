@@ -15,6 +15,7 @@ class App extends Component {
       loginClicked: false,
       isLoggedIn: false,
       isMovieExpanded: false,
+      movieIsLoaded: false,
       userInfo: {
         userEmail: '',
         userId: '',
@@ -52,6 +53,12 @@ class App extends Component {
     })
   }
 
+  movieDidLoad = () => {
+    this.setState({
+      movieIsLoaded: true
+    })
+  }
+
   appState = (userData) => {   
     this.setState({ 
       userInfo: {
@@ -71,7 +78,7 @@ class App extends Component {
       <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} onClick={ this.clickHandler }/> }/>
       <Route exact path = '/login' render =  { () => <LogInPage userInfo={ this.state.userInfo } updateAppState={ this.userLoggedIn } appState={ this.appState }/> }/>
       <Route exact path = '/users/63' render =  { () => <Movies movies={ this.state.movies} onClick={ this.clickHandler } /> }/>
-      <Route exact path = '/movie/:id' render =  { ({match}) => <ExpandedMovie {...match} /> } />
+      <Route exact path = '/movie/:id' render =  { ({match}) => <ExpandedMovie {...match} movieDoneLoading= { this.movieDidLoad }/> } />
 
     </main>
     :
