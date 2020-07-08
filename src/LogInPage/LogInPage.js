@@ -56,10 +56,8 @@ class LogInPage extends Component {
                     type='text' 
                     placeholder='password'></input>
                     <button
-                        onClick={ this.clickHandler  }
-                    >
-                    <Link to='/users/63' className='user-page'></Link>
-                    Login
+                        onClick={ this.clickHandler  } >
+                        <Link to='/users/63' className='user-page'>Login</Link>
                     </button>
                 </form>
             </section>
