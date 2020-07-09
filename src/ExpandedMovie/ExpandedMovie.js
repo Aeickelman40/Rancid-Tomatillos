@@ -5,7 +5,8 @@ class ExpandedMovie extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            movieData: {}
+            movieData: {}, 
+            userRatings: []
         }
     }
     
@@ -23,6 +24,14 @@ class ExpandedMovie extends Component {
     movieInfo();
 }
 
+    updateRating() {
+        console.log('updateRating')
+    }
+
+    submitNewRating() {
+        console.log('submitNewRating')
+    }
+
    render() {
        if (this.state.movieData.movie) {
         const { id, title, poster_path, release_date, overview, genres, budget, revenue, runtime, tagline, average_rating} =
@@ -39,7 +48,7 @@ class ExpandedMovie extends Component {
                         height: '200px',
                         width: '100%'
                         }}
-                   > </section>
+                    > </section>
                    <h1>{title}</h1>
                    <h5>Tag Line:{tagline}</h5>
                    <p>{overview}</p>
@@ -50,7 +59,24 @@ class ExpandedMovie extends Component {
                    <h5>Runtime:{runtime}</h5>
                    <h5>Average Rating:{Math.round(average_rating)}</h5>
                    <h5>Your Rating:{ yourRating } </h5>
-               </section>
+                    <section>
+                        <label for="rate-movie">Rate This Movie: </label>
+                            <select value={this.state.userRatings} onChange={this.updateRating} required>
+                                <option value="0">--Select a Rating--</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        <button className="submit-rating" type="submit" onClick={this.submitNewRating} >SUBMIT</button>
+                    </section>
+                </section>
            )
         } else if (this.props.errorMessage) {
             return <h1>Error Page</h1>
