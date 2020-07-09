@@ -4,10 +4,8 @@ import { NavLink } from 'react-router-dom'
 function Movie(props) {    
     
     const {id, backdrop_path, release_date, average_rating, title} = props.movie
-    const { onClick } = props
-    // const userRatings = props.userRatings.ratings
-    // console.log(userRatings);
-    
+    const { onClick, userRatings } = props
+    if (userRatings)
     
     // const movieRating = userRatings.find(rating => rating.movie_id === id)
     

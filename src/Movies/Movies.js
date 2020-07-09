@@ -7,26 +7,23 @@ import './Movies.css'
      constructor(props) {
          super(props)
          this.state = {
-             userRatings: []
+             userRatings: null
          }
      }
 
-    componentDidMount() {
-        let userRatings = []
-        const { userName, userId } = this.props.appState.userInfo
-        async function getRatings(state) {
-            const resolvedPromise = await getUserRatings()
-            userRatings = resolvedPromise
-            console.log('20', userRatings);
-        } 
-        getRatings(this.state)
-        setTimeout(() => this.setState({ userRatings: userRatings })        
-, 1000)
+    async putUserRatingsInState() {
+        const userRatings = await getUserRatings()
+        return userRatings
+     }
 
+   componentDidMount() {       
+        this.putUserRatingsInState()
+        .then(data => this.setState({userRatings: data.ratings}))
+        .catch(err => console.error(err))
      }
 
      render() {   
-         console.log(this.state)      
+        const { userRatings } = this.state
         if (this.props) {        
         const { movies } = this.props
         const moviesInfo = movies.map(movie => {
@@ -35,6 +32,7 @@ import './Movies.css'
             movie={ movie }
             onClick={ this.props.onClick }
             appState={ this.props.appState }
+            userRatings={ userRatings }
             />
         })
         return (
