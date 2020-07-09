@@ -1,15 +1,14 @@
 import React from 'react';
 import './Movie.css';
 import { NavLink } from 'react-router-dom'
-function Movie(props) {
+function Movie(props) {    
     const {id, backdrop_path, release_date, average_rating, title} = props.movie
     const { onClick } = props
     let userRatings
     if (props.appState.isLoggedIn) {
         userRatings = props.appState.userInfo.userRating || "You haven't rated this movie"
-    }
+    }    
     return (
-
             <NavLink to={`${/movie/}${id}`}>
               <button name='movieId' value={ id } className = 'movie-card' onClick={ (event) => onClick(event) }>
                   <section

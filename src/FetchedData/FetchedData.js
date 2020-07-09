@@ -31,7 +31,6 @@ export const postLogin = async (email, password) => {
         }
     )
     const message = await response.json();
-    console.log(message)
     return message;
 };
 

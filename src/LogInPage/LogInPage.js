@@ -35,8 +35,7 @@ class LogInPage extends Component {
             }
         }
         
-        render () {   
-            console.log('login rendered');
+        render () {               
             return (
                 <section className="main-login">
                 <form className = 'login-form'>
