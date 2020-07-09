@@ -35,4 +35,12 @@ export const postLogin = async (email, password) => {
     return message;
 };
 
+export const getUserRatings = async () => {
+    //Change this back to the correct user
+    const response = await fetch('https://rancid-tomatillos.herokuapp.com/api/v2/users/60/ratings')
+    const userRatings = await response.json()
+    return userRatings;
+    
+}
+
 

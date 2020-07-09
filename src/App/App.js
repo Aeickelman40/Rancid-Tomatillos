@@ -17,6 +17,7 @@ class App extends Component {
       isMovieExpanded: false,
       movieIsLoaded: false,
       userInfo: {
+        userRatings: [],
         userEmail: '',
         userId: '',
         userName: 'Guest',
@@ -64,7 +65,8 @@ class App extends Component {
     this.setState({ 
       userInfo: {
         userId: userData.userId ,
-        userName: userData.userName
+        userName: userData.userName,
+        userRatings: userData.userRatings
       }
     })
   }
@@ -74,9 +76,9 @@ class App extends Component {
     <main className="App">
       <Route path = '/' render = { () =>  <Header onClick={ this.clickHandler } appState={ this.state } logoutButton={ this.userLoggedIn} /> }/>
 
-      <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} onClick={ this.clickHandler } appState={ this.state }/> }/>
+      <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} onClick={ this.clickHandler } appState={ this.state } updateAppState={ this.appState }/> }/>
       <Route exact path = '/login' render =  { () => <LogInPage userInfo={ this.state.userInfo } updateAppState={ this.userLoggedIn } appState={ this.appState }/> }/>
-      <Route exact path = '/users/63' render =  { () => <Movies movies={ this.state.movies} onClick={ this.clickHandler } appState={ this.state } /> }/>
+      <Route exact path = '/users/63' render =  { () => <Movies movies={ this.state.movies} onClick={ this.clickHandler } appState={ this.state } updateAppState={ this.appState }/> }/>
       <Route exact path = '/movie/:id' render =  { ({match}) => <ExpandedMovie {...match} movieDoneLoading= { this.movieDidLoad } appState = { this.state }/> } />
 
     </main>

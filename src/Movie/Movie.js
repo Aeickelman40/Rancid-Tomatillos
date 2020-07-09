@@ -30,7 +30,7 @@ function Movie(props) {
                             <p className='title'>{title}</p>
                             <p>Release Date:{ release_date }</p>
                             <p>Average Rating:{ Math.round(average_rating) }</p>
-                            <p>Your Rating:{ userRatings }</p>
+                            {/* <p>Your Rating:{ userRatings }</p> */}
                  </section>
                 </button>
             </NavLink>
