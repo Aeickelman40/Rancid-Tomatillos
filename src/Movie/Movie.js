@@ -2,11 +2,17 @@ import React from 'react';
 import './Movie.css';
 import { NavLink } from 'react-router-dom'
 function Movie(props) {    
+    
     const {id, backdrop_path, release_date, average_rating, title} = props.movie
     const { onClick } = props
-    let userRatings
+    // const userRatings = props.userRatings.ratings
+    // console.log(userRatings);
+    
+    
+    // const movieRating = userRatings.find(rating => rating.movie_id === id)
+    
     if (props.appState.isLoggedIn) {
-        userRatings = props.appState.userInfo.userRating || "You haven't rated this movie"
+        const userRatings = props.appState.userInfo.userRating || "You haven't rated this movie"
     }    
     return (
             <NavLink to={`${/movie/}${id}`}>

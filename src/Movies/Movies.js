@@ -1,36 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Movie from '../Movie/Movie';
 import { getUserRatings } from '../FetchedData/FetchedData'
 import './Movies.css'
 
- function Movies(props) {
-    let resolvedPromise
-    const { userName, userId } = props.appState.userInfo
-    async function getRatings() {
-        resolvedPromise = await getUserRatings()
-        console.log('getRatings ran', resolvedPromise);
-        
-    } 
-    getRatings()
+ class Movies extends Component {
+     constructor(props) {
+         super(props)
+         this.state = {
+             userRatings: []
+         }
+     }
 
-        
-    
-    
-    
-    
-    
-    // props.updateAppState({userName: userName, userId: userId, userRatings })    
-    
-    if (props) {
-        console.log(resolvedPromise)
-        
-        const {movies} = props;
+    componentDidMount() {
+        let userRatings = []
+        const { userName, userId } = this.props.appState.userInfo
+        async function getRatings(state) {
+            const resolvedPromise = await getUserRatings()
+            userRatings = resolvedPromise
+            console.log('20', userRatings);
+        } 
+        getRatings(this.state)
+        setTimeout(() => this.setState({ userRatings: userRatings })        
+, 1000)
+
+     }
+
+     render() {   
+         console.log(this.state)      
+        if (this.props) {        
+        const { movies } = this.props
         const moviesInfo = movies.map(movie => {
             return <Movie 
             key={ movie.id }
             movie={ movie }
-            onClick={ props.onClick }
-            appState={ props.appState }
+            onClick={ this.props.onClick }
+            appState={ this.props.appState }
             />
         })
         return (
@@ -46,5 +50,15 @@ import './Movies.css'
         )
     }
 }
+     }
+           
+    
+    
+    
+    
+    
+    // props.updateAppState({userName: userName, userId: userId, userRatings })    
+    
+    
 
 export default Movies;
