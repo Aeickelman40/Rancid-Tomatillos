@@ -1,10 +1,15 @@
 import React from 'react';
 import './Movie.css';
-import { NavLink, BrowserRouter } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 function Movie(props) {
     const {id, backdrop_path, release_date, average_rating, title} = props.movie
     const { onClick } = props
+    let userRatings
+    if (props.appState.isLoggedIn) {
+        userRatings = props.appState.userInfo.userRating || "You haven't rated this movie"
+    }
     return (
+
             <NavLink to={`${/movie/}${id}`}>
               <button name='movieId' value={ id } className = 'movie-card' onClick={ (event) => onClick(event) }>
                   <section
@@ -20,14 +25,14 @@ function Movie(props) {
                         backgroundSize: 'contain',
                         backgroundRepeat: 'no-repeat'
                  }}>
+                 </section>
                  <section className='movie-description'>
-                            <h5>{title}</h5>
-                            <h5>Release Date:{release_date}</h5>
-                            <h5>Average Rating:{average_rating}</h5>
+                            <p className='title'>{title}</p>
+                            <p>Release Date:{ release_date }</p>
+                            <p>Average Rating:{ Math.round(average_rating) }</p>
+                            {/* <p>Your Rating:{ userRatings }</p> */}
                  </section>
-                 </section>
-                  
-                  </button>
+                </button>
             </NavLink>
     )    
 }
