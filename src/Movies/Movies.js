@@ -3,7 +3,7 @@ import Movie from '../Movie/Movie';
 import { getUserRatings } from '../FetchedData/FetchedData'
 import './Movies.css'
 
- Movies(props) {
+ function Movies(props) {
     let resolvedPromise
     const { userName, userId } = props.appState.userInfo
     async function getRatings() {
