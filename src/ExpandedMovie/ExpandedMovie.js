@@ -6,12 +6,12 @@ class ExpandedMovie extends Component {
         super(props);
         this.state = {
             movieData: {}, 
-            userRatings: []
+            userRating: null
         }
     }
     
-    componentDidMount(props){
-    console.log(this.props)
+    componentDidMount(props) {
+    console.log(this.state)
     const {movieDoneLoading} = this.props       
     const movieId = this.props.params.id
     const movieInfo = async () =>  { 
@@ -24,8 +24,8 @@ class ExpandedMovie extends Component {
     movieInfo();
 }
 
-    updateRating() {
-        console.log('updateRating')
+    updateRating = (rating) => {
+        this.setState( { userRating: rating.target.value }  )
     }
 
     submitNewRating() {
@@ -33,6 +33,7 @@ class ExpandedMovie extends Component {
     }
 
    render() {
+       console.log(this.state)
        if (this.state.movieData.movie) {
         const { id, title, poster_path, release_date, overview, genres, budget, revenue, runtime, tagline, average_rating} =
             this.state.movieData.movie 
@@ -61,7 +62,7 @@ class ExpandedMovie extends Component {
                    <h5>Your Rating:{ yourRating } </h5>
                     <section>
                         <label for="rate-movie">Rate This Movie: </label>
-                            <select value={this.state.userRatings} onChange={this.updateRating} required>
+                            <select className="rating-options" value={this.state.userRating} onChange={this.updateRating} required>
                                 <option value="0">--Select a Rating--</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
