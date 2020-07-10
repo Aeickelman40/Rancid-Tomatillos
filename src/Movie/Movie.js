@@ -5,7 +5,7 @@ function Movie(props) {
     
     const {id, backdrop_path, release_date, average_rating, title} = props.movie
     const { onClick, userRatings } = props
-    let movieRating = "You haven't rated this movie yet."
+    let movieRating = null
     
     // const movieRating = userRatings.find(rating => rating.movie_id === id)
     
@@ -16,7 +16,6 @@ function Movie(props) {
             })   
         }
     }    
-    console.log(movieRating);
     
     return (
             <NavLink to={`${/movie/}${id}`}>

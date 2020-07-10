@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './LogInPage.css';
 import { postLogin } from '../FetchedData/FetchedData'
 import { Link } from 'react-router-dom';
+import { getUserRatings } from '../FetchedData/FetchedData'
+
 
 class LogInPage extends Component {
     constructor(props) {
@@ -11,6 +13,7 @@ class LogInPage extends Component {
             password: '', 
             userName: props.userInfo.userName,
             userId: props.userInfo.userId,
+            userRatings: null,
             updateAppState: props.updateAppState,
             UpdateAppState: props.appState
         }
@@ -23,19 +26,34 @@ class LogInPage extends Component {
 
     clickHandler = async (event) => {
         event.preventDefault()  
-        this.state.updateAppState();
+        this.state.updateAppState();        
         const { email, password } = this.state
         try {
             const login = await postLogin(email, password);  
             const {id, name } = login.user
-            this.state.UpdateAppState({userId: id, userName: name})
-            this.setState({ userId: id, userName: name })                        
+            this.state.UpdateAppState({userId: id, userName: name, userRatings: this.state.userRatings})
+            this.setState({ userId: id, userName: name, userRatings: this.state.userRatings })                        
             } catch(error) {
                 this.setState({ error: error })
-            }
+            }                        
+        }
+
+        async putUserRatingsInState() {
+            const userRatings = await getUserRatings()
+            return userRatings
+        }
+
+        componentDidMount() {
+            this.putUserRatingsInState()
+                .then(data => this.setState({
+                    userRatings: data.ratings
+                }))
+                .then(data => console.log(this.state))
+                .catch(err => console.error(err))
+                console.log('login component');    
         }
         
-        render () {               
+        render () { 
             return (
                 <section className="main-login">
                 <form className = 'login-form'>

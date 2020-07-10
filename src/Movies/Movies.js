@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Movie from '../Movie/Movie';
-import { getUserRatings } from '../FetchedData/FetchedData'
+// import { getUserRatings } from '../FetchedData/FetchedData'
 import './Movies.css'
 
  class Movies extends Component {
@@ -11,21 +11,10 @@ import './Movies.css'
          }
      }
 
-    async putUserRatingsInState() {
-        const userRatings = await getUserRatings()
-        return userRatings
-     }
-
-   componentDidMount() {       
-        this.putUserRatingsInState()
-        .then(data => this.setState({userRatings: data.ratings}))
-        .catch(err => console.error(err))
-     }
-
-     render() {   
+     render() {           
         const { userRatings } = this.state
         if (this.props) {        
-        const { movies } = this.props
+        const { movies} = this.props
         const moviesInfo = movies.map(movie => {
             return <Movie 
             key={ movie.id }
@@ -46,16 +35,15 @@ import './Movies.css'
         return (
         <h1>Loading</h1>
         )
+        }
     }
 }
-     }
            
     
     
     
     
     
-    // props.updateAppState({userName: userName, userId: userId, userRatings })    
     
     
 
