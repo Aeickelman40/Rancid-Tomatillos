@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getIndividualMovieData } from '../FetchedData/FetchedData'
+import { getIndividualMovieData, addMovieRating } from '../FetchedData/FetchedData'
 
 class ExpandedMovie extends Component {
     constructor(props) {
@@ -28,8 +28,9 @@ class ExpandedMovie extends Component {
         this.setState( { userRating: rating.target.value }  )
     }
 
-    submitNewRating() {
-        console.log('submitNewRating')
+    submitNewRating = (rating) => {
+        console.log('submitNewRating', rating)
+        addMovieRating(rating)
     }
 
    render() {
