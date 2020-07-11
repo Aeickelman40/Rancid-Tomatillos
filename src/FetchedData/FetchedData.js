@@ -44,7 +44,6 @@ export const getUserRatings = async () => {
 
 export const addMovieRating = async (rating, userId, movieId) => {
     let numRating = parseInt(rating)
-    console.log('invoke async func', rating)
       const response = await fetch(
           "https://rancid-tomatillos.herokuapp.com/api/v2/users/63/ratings", {
               "method": "POST",

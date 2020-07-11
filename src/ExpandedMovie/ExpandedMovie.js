@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getIndividualMovieData, addMovieRating } from '../FetchedData/FetchedData'
+import { render } from '@testing-library/react';
 
 class ExpandedMovie extends Component {
     constructor(props) {
@@ -26,7 +27,6 @@ class ExpandedMovie extends Component {
 }
 
     updateRating = (rating) => {
-        console.log(this.state)
         this.setState( { userRating: rating.target.value }  )
     }
 
@@ -35,7 +35,6 @@ class ExpandedMovie extends Component {
         const usersRating = this.state.userRating
         const userId = this.props.appState.userInfo.userId
         const movieId = this.state.movieData.movie.id
-        console.log(movieId)
         addMovieRating(usersRating, userId, movieId)
     }
 
