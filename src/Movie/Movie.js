@@ -5,6 +5,7 @@ function Movie(props) {
     const {id, backdrop_path, release_date, average_rating, title} = props.movie
     const { onClick } = props
     const { userRatings } = props.appState.userInfo
+    const { isLoggedIn } = (props.appState)
     let movieRating= {rating: null}
     
     if (props.appState.isLoggedIn) {
@@ -14,7 +15,6 @@ function Movie(props) {
         }   
     }       
     let  rating = movieRating.rating
-    
     
     return (
             <NavLink to={`${/movie/}${id}`}>
@@ -33,7 +33,8 @@ function Movie(props) {
                             <p className='title'>{title}</p>
                             <p>Release Date:{ release_date }</p>
                             <p>Average Rating:{ Math.round(average_rating) }</p>
-                            <p>Your Rating:{ rating }</p>
+                            { isLoggedIn && <p>Your Rating:{ rating }</p>}
+                            {/* <p>Your Rating:{ rating }</p> */}
                  </section>
                 </button>
             </NavLink>
