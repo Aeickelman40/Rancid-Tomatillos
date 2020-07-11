@@ -17,7 +17,7 @@ class App extends Component {
       isMovieExpanded: false,
       movieIsLoaded: false,
       userInfo: {
-        userRatings: [],
+        userRatings: null,
         userEmail: '',
         userId: '',
         userName: 'Guest',
@@ -30,7 +30,6 @@ class App extends Component {
       const movies = await getMovies();
       this.setState({ movies: movies });
     } catch(error) {
-      console.log('hi')
       this.setState({ error: error });
     }
   }
@@ -61,25 +60,27 @@ class App extends Component {
     })
   }
 
-  appState = (userData) => {   
+  appState = (userData) => { 
     this.setState({ 
       userInfo: {
         userId: userData.userId ,
         userName: userData.userName,
         userRatings: userData.userRatings
       }
-    })
+    })    
   }
 
   render() {  
+    console.log('app state', this.state);
+    console.log('App rendered');
+    
     return this.state.movies ?
     <main className="App">
       <Route path = '/' render = { () =>  <Header onClick={ this.clickHandler } appState={ this.state } logoutButton={ this.userLoggedIn} /> }/>
-
-      <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} onClick={ this.clickHandler } appState={ this.state } updateAppState={ this.appState }/> }/>
+      <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} onClick={ this.clickHandler } appState={ this.state } /> }/>
       <Route exact path = '/login' render =  { () => <LogInPage userInfo={ this.state.userInfo } updateAppState={ this.userLoggedIn } appState={ this.appState }/> }/>
-      <Route exact path = '/users/63' render =  { () => <Movies movies={ this.state.movies} onClick={ this.clickHandler } appState={ this.state } updateAppState={ this.appState }/> }/>
-      <Route exact path = '/movie/:id' render =  { ({match}) => <ExpandedMovie {...match} movieDoneLoading= { this.movieDidLoad } appState = { this.state } /> } />
+      <Route exact path = '/users/63' render =  { () => <Movies movies={ this.state.movies} onClick={ this.clickHandler } appState={ this.state } /> }/>
+      <Route exact path = '/movie/:id' render =  { ({match}) => <ExpandedMovie {...match} movieDoneLoading= { this.movieDidLoad } appState = { this.state }/> } />
 
     </main>
     :
