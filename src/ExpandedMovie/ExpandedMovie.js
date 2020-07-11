@@ -65,6 +65,7 @@ class ExpandedMovie extends Component {
                    <h5>Runtime:{runtime}</h5>
                    <h5>Average Rating:{Math.round(average_rating)}</h5>
                    { isLoggedIn && <h5>Your Rating: { movieRating } </h5>}
+                   { isLoggedIn &&
                     <section>
                         <label for="rate-movie">Rate This Movie: </label>
                             <select className="rating-options" value={this.state.userRating} onChange={this.updateRating} required>
@@ -82,6 +83,7 @@ class ExpandedMovie extends Component {
                             </select>
                         <button className="submit-rating" type="submit" onClick={this.submitNewRating} >SUBMIT</button>
                     </section>
+       }
                 </section>
            )
         } else if (this.props.errorMessage) {

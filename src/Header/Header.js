@@ -11,8 +11,7 @@ function Header(props) {
 
     const {userInfo}=props.appState
     const { onClick, logoutButton } = props
-    
-    if (props.appState.isLoggedIn === false) { 
+    const { isLoggedIn } = props.appState
     return (
 
             <header className = "main-header">
@@ -20,8 +19,10 @@ function Header(props) {
     <h2>Welcome {userInfo.userName}</h2> 
              <section className = "button-container">
                  <button name="loginClicked" className='login-button' onClick={ onClick }>
-                     <NavLink to='/login' className='login' name="loginClicked">
-                         Login</NavLink>
+                { isLoggedIn ? 
+                <NavLink to='/' className='logout'  name="loginClicked">Logout</NavLink> :
+                <NavLink to='/login' className='login' name="loginClicked">Login</NavLink> 
+                 }                     
                  </button>
                  <button name="home" className='home-button' onClick={ onClick }>
                      <NavLink to='/' className='home'>Home</NavLink>
@@ -29,24 +30,6 @@ function Header(props) {
                 </section>
             </header>
     )
-    } else {
-    return (
-     
-            <header className = "main-header">
-             <img src={tomato} alt="cartoon tomato"></img> 
-    <h2>Welcome back {userInfo.userName}</h2> 
-             <section className = "button-container">
-                 <button name="loginClicked" className='logout-button' onClick={ logoutButton }>
-                     <NavLink to='/' className='logout'  name="loginClicked">Logout</NavLink>
-                 </button>
-                 {/* Eventually add ratings component to link on this button in iteration 4 */}
-                 <button name="ratings" className='my-ratings' onClick={ onClick }>
-                     <NavLink to='/' className='home'>My Ratings</NavLink>
-                 </button>
-                </section>
-            </header>
-    )
-    } 
 }
 
 export default Header
