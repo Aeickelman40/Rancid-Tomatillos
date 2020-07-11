@@ -42,4 +42,21 @@ export const getUserRatings = async () => {
     
 }
 
+export const addMovieRating = async (rating) => {
+    console.log('invoke async func', rating)
+    //   const response = await fetch(
+    //       "https://rancid-tomatillos.herokuapp.com/api/v2//users/63/ratings", {
+    //           "method": "POST",
+    //           "headers": {
+    //               "content-type": "application/json"
+    //           },
+    //           "body": JSON.stringify({
+    //             "userRating": rating
+    //           })
+    //       }
+    //   )
+    //   const message = await response.json();
+    //   return message;
+}
+
 
