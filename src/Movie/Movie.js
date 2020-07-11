@@ -1,21 +1,20 @@
 import React from 'react';
 import './Movie.css';
 import { NavLink } from 'react-router-dom'
-function Movie(props) {    
-    
+function Movie(props) {   
     const {id, backdrop_path, release_date, average_rating, title} = props.movie
-    const { onClick, userRatings } = props
-    let movieRating = null
-    
-    // const movieRating = userRatings.find(rating => rating.movie_id === id)
+    const { onClick } = props
+    const { userRatings } = props.appState.userInfo
+    let movieRating= {rating: null}
     
     if (props.appState.isLoggedIn) {
+        movieRating = {rating: null}
         if (userRatings) {
-            userRatings.find(rating => {
-               rating.movie_id === id ? movieRating =rating.rating : movieRating = "You haven't rated this movie yet."
-            })   
-        }
-    }    
+            movieRating = userRatings.find(rating => rating.movie_id === id) || {rating: 'You have not rated this movie'}            
+        }   
+    }       
+    let  rating = movieRating.rating
+    
     
     return (
             <NavLink to={`${/movie/}${id}`}>
@@ -23,11 +22,6 @@ function Movie(props) {
                   <section
                  className='image-container'
                  name={ id }
-                 backdrop-image= { backdrop_path }
-                 release-date= { release_date }
-                 average-rating= { average_rating }
-                 user-rating= { movieRating }
-                 title={ title }
                  data-testid='background'
                     style={ {
                         backgroundImage: 'url(' + backdrop_path + ')',
@@ -39,7 +33,7 @@ function Movie(props) {
                             <p className='title'>{title}</p>
                             <p>Release Date:{ release_date }</p>
                             <p>Average Rating:{ Math.round(average_rating) }</p>
-                            <p>Your Rating:{ movieRating }</p>
+                            <p>Your Rating:{ rating }</p>
                  </section>
                 </button>
             </NavLink>

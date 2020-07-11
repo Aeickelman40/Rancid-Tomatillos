@@ -7,15 +7,15 @@ import './Movies.css'
      constructor(props) {
          super(props)
          this.state = {
-             userRatings: null
+             userRatings: this.props.appState.userInfo.userRatings || null
          }
      }
 
-     render() {           
-        const { userRatings } = this.state
-        if (this.props) {        
+     render() {   
+        const { userRatings } = this.state        
+         if (this.props) {        
         const { movies} = this.props
-        const moviesInfo = movies.map(movie => {
+        const moviesInfo = movies.map(movie => {            
             return <Movie 
             key={ movie.id }
             movie={ movie }
@@ -24,6 +24,7 @@ import './Movies.css'
             userRatings={ userRatings }
             />
         })
+        
         return (
             <section 
                 className='main-page'

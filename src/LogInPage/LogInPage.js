@@ -31,8 +31,8 @@ class LogInPage extends Component {
         try {
             const login = await postLogin(email, password);  
             const {id, name } = login.user
-            this.state.UpdateAppState({userId: id, userName: name, userRatings: this.state.userRatings})
-            this.setState({ userId: id, userName: name, userRatings: this.state.userRatings })                        
+            this.state.UpdateAppState({userId: id, userName: name, userRatings: this.state.userRatings})            
+            this.setState({ userId: id, userName: name, userRatings: this.state.userRatings })                                    
             } catch(error) {
                 this.setState({ error: error })
             }                        
@@ -50,7 +50,6 @@ class LogInPage extends Component {
                 }))
                 .then(data => console.log(this.state))
                 .catch(err => console.error(err))
-                console.log('login component');    
         }
         
         render () { 

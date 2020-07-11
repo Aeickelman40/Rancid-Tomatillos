@@ -17,7 +17,7 @@ class App extends Component {
       isMovieExpanded: false,
       movieIsLoaded: false,
       userInfo: {
-        userRatings: [],
+        userRatings: null,
         userEmail: '',
         userId: '',
         userName: 'Guest',
@@ -30,7 +30,6 @@ class App extends Component {
       const movies = await getMovies();
       this.setState({ movies: movies });
     } catch(error) {
-      console.log('hi')
       this.setState({ error: error });
     }
   }
@@ -68,12 +67,13 @@ class App extends Component {
         userName: userData.userName,
         userRatings: userData.userRatings
       }
-    })
-    console.log(this.state.userInfo);
-    
+    })    
   }
 
   render() {  
+    console.log('app state', this.state);
+    console.log('App rendered');
+    
     return this.state.movies ?
     <main className="App">
       <Route path = '/' render = { () =>  <Header onClick={ this.clickHandler } appState={ this.state } logoutButton={ this.userLoggedIn} /> }/>
