@@ -11,19 +11,19 @@ class ExpandedMovie extends Component {
         }
     }
     
-        componentDidMount(props) {
-    console.log(this.state)
-    const {movieDoneLoading} = this.props       
-    const movieId = this.props.params.id
-    const movieInfo = async () =>  { 
-        let movieData = await getIndividualMovieData(movieId);
-        this.setState({
-            movieData: movieData
-        })  
-    await movieDoneLoading();    
+    componentDidMount(props) {
+        console.log(this.state)
+        const {movieDoneLoading} = this.props       
+        const movieId = this.props.params.id
+        const movieInfo = async () =>  { 
+            let movieData = await getIndividualMovieData(movieId);
+                this.setState({
+                    movieData: movieData
+                })  
+        await movieDoneLoading();    
+        }
+        movieInfo();
     }
-    movieInfo();
-}
 
     updateRating = (rating) => {
         this.setState( { userRating: rating.target.value }  )

@@ -21,7 +21,7 @@ describe('Movie', () => {
         expect(true).toEqual(true)
     })
 
-    it('should render movie to the page', () => {
+    it.skip('should render movie to the page', () => {
         const { getByText } = render(<Movie movie={ movie }/>)
         const title = getByText('exampleTitle')
         const averageRating = getByText('Average Rating:4')  
@@ -31,7 +31,7 @@ describe('Movie', () => {
         expect(releaseDate).toBeInTheDocument()
     })
 
-    it('should have a background image', () => {
+    it.skip('should have a background image', () => {
         const { getByTestId } = render(<Movie movie={ movie } />)
         const backgroundImage = getByTestId('background')
         expect(backgroundImage).toHaveStyle('background-image: url(exampleBackdropPath)')
