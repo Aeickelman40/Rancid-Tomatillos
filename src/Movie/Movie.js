@@ -18,7 +18,13 @@ function Movie(props) {
     
     return (
             <NavLink to={`${/movie/}${id}`}>
-              <button name='movieId' value={ id } className = 'movie-card' onClick={ (event) => onClick(event) }>
+              <button 
+                name='movieId' 
+                value={ id } 
+                className = 'movie-card' 
+                onClick={ (event) => onClick(event) }
+                data-testid="movie-card"
+                >
                   <section
                  className='image-container'
                  name={ id }
@@ -30,10 +36,13 @@ function Movie(props) {
                  }}>
                  </section>
                  <section className='movie-description'>
-                            <p className='title'>{title}</p>
-                            <p>Release Date:{ release_date }</p>
-                            <p>Average Rating:{ Math.round(average_rating) }</p>
-                            { isLoggedIn && <p>Your Rating:{ rating }</p>}
+                            <p 
+                                className='title'
+                                data-testid="movie-title"
+                            >{title}</p>
+                            <p data-testid="movie-release-date">Release Date:{ release_date }</p>
+                            <p data-testid="movie-rating">Average Rating:{ Math.round(average_rating) }</p>
+                            { isLoggedIn && <p data-testid="your-movie-rating">Your Rating:{ rating }</p>}
                  </section>
                 </button>
             </NavLink>
