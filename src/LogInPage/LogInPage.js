@@ -54,24 +54,37 @@ class LogInPage extends Component {
         
         render () { 
             return (
-                <section className="main-login">
-                <form className = 'login-form'>
-                    <h2>Welcome Back</h2>
+                <section 
+                    className="main-login"
+                    data-testid="main-login"
+                >
+                <form 
+                    className ="login-form"
+                    data-testid="login-form"
+                    >
+                    <h2 data-testid="greeting">Welcome Back</h2>
                     <input 
                         name='email' 
                         value={ this.state.value } 
                         onChange={ this.changeHandler }
                         type='text' 
-                        placeholder='email address'>
+                        placeholder='email address'
+                        data-testid='email-input'
+                    >
                     </input>
                     <input 
                     name='password'  
                     value={ this.state.value } 
                     onChange={ this.changeHandler }
                     type='text' 
-                    placeholder='password'></input>
+                    placeholder='password'
+                    data-testid = 'password-input'
+                    >
+                    </input>
                     <button
-                        onClick={ this.clickHandler  } >
+                        onClick={ this.clickHandler  } 
+                        data-testid = 'login-button'
+                    >
                         <Link to='/users/63' className='user-page'>Login</Link>
                     </button>
                 </form>
