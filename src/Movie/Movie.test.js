@@ -2,7 +2,7 @@ import React from 'react';
 import { render, getByTestId, fireEvent, getByText} from '@testing-library/react';
 import '@testing-library/jest-dom'
 import Movie from './Movie';
-import { BrowserRouter } from 'react-router-dom' 
+import { MemoryRouter } from 'react-router-dom' 
 
 describe('Movie', () => {
     let movie = null
@@ -36,15 +36,15 @@ describe('Movie', () => {
         }
 
         movieElement=(
-            <BrowserRouter>
-            <Movie 
-                key={ movie.id } 
-                movie={ movie } 
-                onClick={ onClick } 
-                appState={ appState } 
-                userRatings={ appState.userInfo.userRatings } 
-            />
-            </BrowserRouter>
+            <MemoryRouter>
+                <Movie 
+                    key={ movie.id } 
+                    movie={ movie } 
+                    onClick={ onClick } 
+                    appState={ appState } 
+                    userRatings={ appState.userInfo.userRatings } 
+                />
+            </MemoryRouter>
         )
     })
     

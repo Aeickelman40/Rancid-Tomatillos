@@ -2,7 +2,8 @@ import React from 'react';
 import { render, getByTestId, fireEvent } from '@testing-library/react' 
 import '@testing-library/jest-dom'
 import LogInPage from './LogInPage'
-import { BrowserRouter } from 'react-router-dom'
+import FetchedData from './FetchedDate'
+import { MemoryRouter } from 'react-router-dom'
 
 describe('LoginPage', () => {
     let userLoggedIn = null
@@ -27,13 +28,13 @@ describe('LoginPage', () => {
             },
         }
         LoginElement = (
-            <BrowserRouter>
+            <MemoryRouter>
                 <LogInPage 
                     userInfo={ appState.userInfo } 
                     updateAppState= { userLoggedIn } 
                     appState={ updateAppState }  
                 />
-            </BrowserRouter>
+            </MemoryRouter>
         )
     })
 
