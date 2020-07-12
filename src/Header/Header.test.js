@@ -1,7 +1,9 @@
 import React from 'react';
-import {render} from '@testing-library/react';
+import {render, getByTestId, mock, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom'
 import Header from './Header';
+import { BrowserRouter } from 'react-router-dom';
+
 // import App from '../App/App';
 
 describe('Header', () => {
@@ -11,21 +13,63 @@ describe('Header', () => {
     })
 
     it('should render the header to the page', () => {
-        const { getByText } = render( <Header /> );
-        const welcomeMessage = getByText(/Hello Guest/i);
-        expect(welcomeMessage).toBeInTheDocument();
+        const onClick = jest.fn().mockImplementation(() => {});
+        const { getByTestId } = render(
+        <BrowserRouter>
+        <Header onClick={ onClick } appState={{
+            isLoggedIn: false, 
+            userInfo: {
+                userName: 'sampleUser'
+            }}} />
+        </BrowserRouter>)
+        const header= getByTestId('main-header');
+        expect(header).toBeInTheDocument();
     })
 
     it('should have a buttons for user to log in and return to the home page', () => {
-        const { getByRole } = render( <Header /> );
+        const onClick = jest.fn().mockImplementation(() => {});
+        const { getByRole } = render( 
+        <BrowserRouter>
+            <Header onClick={ onClick } appState={{
+                isLoggedIn: false, 
+                userInfo: {
+                    userName: 'sampleUser'
+                }}} />
+        </BrowserRouter> );
         const logInButton = getByRole('button', { name: 'Login'})
         const homeButton = getByRole('button', { name: 'Home'})
         expect(logInButton).toBeInTheDocument();
         expect(homeButton).toBeInTheDocument();
     })
 
-    it('should display a users name if they are logged in', () => {
+    it('should run onClick when the login button is clicked', () => {
+        const onClick = jest.fn().mockImplementation(() => {});
+            const { getByTestId } = render(
+             <BrowserRouter>
+             <Header onClick={ onClick } appState={{
+                 isLoggedIn: false, 
+                 userInfo: {
+                        userName: 'sampleUser'
+                    }}} />
+                </BrowserRouter>)
+                const logInButton = getByTestId('login-button');
+                fireEvent.click(logInButton)
+                expect(onClick).toBeCalledTimes(1)    
+    })
 
+    it('should run onClick when the home button is clicked', () => {
+        const onClick = jest.fn().mockImplementation(() => {});
+            const { getByTestId } = render(
+             <BrowserRouter>
+             <Header onClick={ onClick } appState={{
+                 isLoggedIn: false, 
+                 userInfo: {
+                        userName: 'sampleUser'
+                    }}} />
+                </BrowserRouter>)
+                const homeButton = getByTestId('home-button');
+                fireEvent.click(homeButton)
+                expect(onClick).toBeCalledTimes(1)    
     })
 
 })
