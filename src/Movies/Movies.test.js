@@ -2,13 +2,17 @@ import React from 'react';
 import {render, getByTestId} from '@testing-library/react';
 import '@testing-library/jest-dom'
 import Movies from './Movies';
+import { BrowserRouter } from 'react-router-dom';
 
 describe ('Movies', () => {
     let movies = null
+    let onClick = null
+    let appState = null
+    let moviesElement = null
     
     beforeEach(() => {
-        movies = {
-            movies: [
+        onClick = jest.fn().mockImplementation(() => {})
+        movies = [
             {
                 id: 1,
                 poster_path: 'examplePosterPath1',
@@ -25,20 +29,40 @@ describe ('Movies', () => {
                 release_date: '2002-02-02'
             }
             ]
-        }
+
+        appState = {
+                loginClicked: false,
+                isLoggedIn: false,
+                isMovieExpanded: false,
+                movieIsLoaded: false,
+                userInfo: {
+                    userRatings: null,
+                    userEmail: '',
+                    userId: '',
+                    userName: 'Guest',
+                },
+            }
+        moviesElement = (
+            <BrowserRouter>
+                <Movies movies={ movies } onClick={ onClick } appState={ appState } />
+            </BrowserRouter>
+        )
     })
 
     it('should be true', () => {
         expect(true).toEqual(true)
     })
 
-    it('should have movies data', () => {
-        const { getByTestId } = render(<Movies moviesData={ movies } />)
+    it('should have movies data', () => {        
+        const { getByTestId } = render(moviesElement)
         const movie = getByTestId('all-movies');
         expect(movie).toBeInTheDocument()
     })
-
-    it('should render loading when page is loading', () => {
-        
+    
+    it('should have userRatings', () => {
+        const { userRatings } = moviesElement.props.children.props.appState.userInfo
+        const { getByTestId } = render(moviesElement)
+        const movie = getByTestId('all-movies');
+        expect(userRatings).toEqual(null)        
     })
 })

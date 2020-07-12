@@ -71,8 +71,7 @@ class App extends Component {
   }
 
   render() {  
-    console.log('app state', this.state);
-    console.log('App rendered');
+    console.log('app state', this.state.movies);
     
     return this.state.movies ?
     <main className="App">

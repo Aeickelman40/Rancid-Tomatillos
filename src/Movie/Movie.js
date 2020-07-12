@@ -34,7 +34,6 @@ function Movie(props) {
                             <p>Release Date:{ release_date }</p>
                             <p>Average Rating:{ Math.round(average_rating) }</p>
                             { isLoggedIn && <p>Your Rating:{ rating }</p>}
-                            {/* <p>Your Rating:{ rating }</p> */}
                  </section>
                 </button>
             </NavLink>
