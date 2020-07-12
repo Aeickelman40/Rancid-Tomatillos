@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getIndividualMovieData, addMovieRating } from '../FetchedData/FetchedData'
+import { getIndividualMovieData, addMovieRating, deleteMovieRating } from '../FetchedData/FetchedData'
 import { render } from '@testing-library/react';
 
 class ExpandedMovie extends Component {
@@ -7,7 +7,10 @@ class ExpandedMovie extends Component {
         super(props);
         this.state = {
             movieData: {}, 
-            userRating: null
+            userRating: {
+                rating: null
+            },
+            movieIsRated: false
         }
     }
     
@@ -20,31 +23,78 @@ class ExpandedMovie extends Component {
                 this.setState({
                     movieData: movieData
                 })  
-        await movieDoneLoading();    
+                await movieDoneLoading();    
+                this.findUserRating();
+            }
+            movieInfo();
         }
-        movieInfo();
-    }
+        
+        removeRating = (e) => {
+            e.preventDefault();
+            const usersRating = this.state.userRating
+            console.log(usersRating)
+            const userId = this.props.appState.userInfo.userId
+            
+            const matchingMovieId = this.state.userRating.find(rating => rating.movie_id === this.state.movieData.movie.id)
+            console.log(matchingMovieId)
+            deleteMovieRating(userId, matchingMovieId);
+        }
+        
+        updateRating = (rating) => {
+            this.setState( { userRating: rating.target.value }  )
+        }
+        
+        submitNewRating = (e) => {
+            e.preventDefault();
+            const usersRating = this.state.userRating
+            const userId = this.props.appState.userInfo.userId
+            const movieId = this.state.movieData.movie.id
+            this.setState( {
+                movieIsRated: true
+            })
+            addMovieRating(usersRating, userId, movieId)
+        }
 
-    updateRating = (rating) => {
-        this.setState( { userRating: rating.target.value }  )
-    }
+        findUserRating = () => {
+            const { isLoggedIn } = this.props.appState 
+            console.log(isLoggedIn)
+            const userRatings = this.props.appState.userInfo.userRatings
+            const { id } = this.state.movieData.movie
+            
+            if (isLoggedIn === true) {
+                userRatings.find(userRating => {
+                console.log('user rating id', userRating.movie_id)
+                console.log('id', id)
+                if (userRating.movie_id === id) {
+                    this.setState({
+                        movieIsRated: true,
+                        userRating: userRating
+                     })
+                     
+                     return userRating
+                } else {
+                    this.setState({
+                        userRating: {
+                            rating: 'You have not rated this movie'
+                        }
+                    })
+                    return userRating
+                 }
+             })
+            }
+        }
+        
+        render() {
+            const { isLoggedIn } = this.props.appState 
+            const { movieIsRated } = this.state   
+            if (this.state.movieData.movie) {
+            const { id, title, poster_path, release_date, overview, genres, budget, revenue, runtime, tagline, average_rating} =
+                this.state.movieData.movie 
+                
 
-    submitNewRating = (e) => {
-        e.preventDefault();
-        const usersRating = this.state.userRating
-        const userId = this.props.appState.userInfo.userId
-        const movieId = this.state.movieData.movie.id
-        addMovieRating(usersRating, userId, movieId)
-    }
+                
 
-   render() {
-       const { isLoggedIn } = this.props.appState      
-       if (this.state.movieData.movie) {
-        const { id, title, poster_path, release_date, overview, genres, budget, revenue, runtime, tagline, average_rating} =
-            this.state.movieData.movie 
-        const userRatings = this.props.appState.userInfo.userRatings
-        const yourRating = isLoggedIn ? userRatings.find(userRating => userRating.movie_id === id) || {rating: 'You have not rated this movie'} : {}
-        const movieRating = yourRating.rating        
+        const movieRating = this.state.userRating.rating        
             
         
            return  (
@@ -69,7 +119,8 @@ class ExpandedMovie extends Component {
                    <h5>Runtime:{runtime}</h5>
                    <h5>Average Rating:{Math.round(average_rating)}</h5>
                    { isLoggedIn && <h5>Your Rating: { movieRating } </h5>}
-                   { isLoggedIn &&
+                   { movieIsRated && <button className="delete-rating" type="delete" onClick={this.removeRating}>Delete</button>}
+                   { !movieIsRated && isLoggedIn && 
                     <section>
                         <label for="rate-movie">Rate This Movie: </label>
                             <select className="rating-options" value={this.state.userRating} onChange={this.updateRating} required>
@@ -84,18 +135,19 @@ class ExpandedMovie extends Component {
                                 <option value="8">8</option>
                                 <option value="9">9</option>
                                 <option value="10">10</option>
-                            </select>
+                            </select>       
                         <button className="submit-rating" type="submit" onClick={this.submitNewRating} >SUBMIT</button>
                     </section>
-       }
+                    } 
                 </section>
            )
+         
         } else if (this.props.errorMessage) {
             return <h1>Error Page</h1>
         } else    
         return <h1>Loading</h1>    
-    }
-}
+            }
+       }
 
 
 export default ExpandedMovie

@@ -60,4 +60,19 @@ export const addMovieRating = async (rating, userId, movieId) => {
       return message;
 }
 
+export const deleteMovieRating = async (userId, movieId) => {
+    console.log(userId, movieId)
+    const response = await fetch(
+        "https://rancid-tomatillos.herokuapp.com/api/v2/users/63/ratings", {
+            "method": "DELETE",
+            "headers": {
+                "content-type": "application/json"
+            }, 
+            
+
+    }
+    
+    )
+}
+
 

@@ -9,13 +9,25 @@ import ExpandedMovie from './ExpandedMovie';
 
 describe('ExpandedMovie', () => {
 
+    let ExpandedMovieElement;
+
+    beforeEach(() => {
+        ExpandedMovieElement = (
+            <BrowserRouter>
+                <ExpandedMovie 
+                    appState= { this.appState }
+                />
+            </BrowserRouter>
+        )
+    })
+
     it('should be true', () => {
         expect(true).toEqual(true);
     })
 
       describe('Unit Tests', () => {
     it('Should render the expanded movie page', async () => {
-      const { getByText } = await render(<BrowserRouter><ExpandedMovie /></BrowserRouter>);
+      const { getByText } = render(ExpandedMovieElement)
       const tagLine = getByText('Tag Line')
     
       expect(tagLine).toBeInTheDocument();
