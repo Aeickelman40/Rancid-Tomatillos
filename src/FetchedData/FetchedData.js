@@ -45,7 +45,7 @@ export const getUserRatings = async () => {
 export const addMovieRating = async (rating, userId, movieId) => {
     let numRating = parseInt(rating)
       const response = await fetch(
-          "https://rancid-tomatillos.herokuapp.com/api/v2/users/63/ratings", {
+          `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings`, {
               "method": "POST",
               "headers": {
                   "content-type": "application/json"
@@ -58,6 +58,18 @@ export const addMovieRating = async (rating, userId, movieId) => {
       )
       const message = await response.json();
       return message;
+}
+
+export const deleteMovieRating = async (userId, movieId) => {
+    console.log('userId', userId)
+    console.log('movieId', movieId)
+    const response = await fetch(
+        `https://rancid-tomatillos.herokuapp.com/api/v2/users/${userId}/ratings/${movieId}`, {
+            "method": "DELETE"        
+        }  
+    )
+    const data = await response;
+    return data;
 }
 
 
