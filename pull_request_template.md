@@ -6,11 +6,11 @@
 ### Detailed Description
 ### Why is this change required? What problem does it solve?
 ### Files modified:
-- [ ] App/App.css
-- [ ] App/App.js
+- [ ] App.js/App.css/App.test.js
 - [ ] Movie.js/Movie.css/Movie.test.js
 - [ ] Movies.js/Movies.css/Movies.test.js
 - [ ] Header.js/Header.css/Header.test.js
 - [ ] ErrorHandlePage.js/ErrorHandlePage.css/ErrorHandlePage.test.js
 - [ ] FetchedData.js/FetchedData.css/FetchedData.test.js
 - [ ] LogInPage.js/LogInPage.css/LogInPage.test.js
+- [ ] ExpandedMoviePage.js/ExpandedMoviePage.css/ExpandedMoviePage.test.js
