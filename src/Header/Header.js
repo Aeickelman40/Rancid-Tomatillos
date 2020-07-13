@@ -8,23 +8,33 @@ import App from '../App/App';
 
 
 function Header(props) { 
-
-    const {userInfo}=props.appState
-    const { onClick, logoutButton } = props
-    const { isLoggedIn } = props.appState
+    const { userInfo, isLoggedIn }=props.appState
+    const { onClick } = props
+    // const { isLoggedIn } = props.appState
     return (
-
-            <header className = "main-header">
+            <header 
+                className = "main-header"
+                data-testid="main-header"
+                >
              <img src={tomato} alt="cartoon tomato"></img> 
     <h2>Welcome {userInfo.userName}</h2> 
              <section className = "button-container">
-                 <button name="loginClicked" className='login-button' onClick={ onClick }>
+                 <button 
+                    name="loginClicked" 
+                    className='login-button' 
+                    onClick={ onClick }
+                    data-testid="login-button"
+                >
                 { isLoggedIn ? 
                 <NavLink to='/' className='logout'  name="loginClicked">Logout</NavLink> :
                 <NavLink to='/login' className='login' name="loginClicked">Login</NavLink> 
                  }                     
                  </button>
-                 <button name="home" className='home-button' onClick={ onClick }>
+                 <button 
+                    name="home" 
+                    className='home-button' 
+                    onClick={ onClick }
+                    data-testid='home-button'>
                      <NavLink to='/' className='home'>Home</NavLink>
                  </button>
                 </section>

@@ -11,10 +11,10 @@ import './Movies.css'
          }
      }
 
-     render() {   
+     render() {            
         const { userRatings } = this.state        
          if (this.props) {        
-        const { movies} = this.props
+        const { movies } = this.props
         const moviesInfo = movies.map(movie => {            
             return <Movie 
             key={ movie.id }
@@ -24,7 +24,6 @@ import './Movies.css'
             userRatings={ userRatings }
             />
         })
-        
         return (
             <section 
                 className='main-page'
