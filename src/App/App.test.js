@@ -5,14 +5,6 @@ import App from './App';
 import Movies from '../Movies/Movies';
 import { MemoryRouter } from 'react-router-dom';
 jest.mock('../FetchedData/FetchedData')
-let movies = {
-  "id": 475430,
-  "poster_path": "https://image.tmdb.org/t/p/original//tI8ocADh22GtQFV28vGHaBZVb0U.jpg",
-  "backdrop_path": "https://image.tmdb.org/t/p/original//o0F8xAt8YuEm5mEZviX5pEFC12y.jpg",
-  "title": "Artemis Fowl",
-  "average_rating": 5.6,
-  "release_date": "2020-06-12"
-}
 
 
 describe('App', () => {
@@ -57,15 +49,23 @@ describe('App', () => {
   })
 
   it('should render the fetched movies to the home page', async () => {
-    getMovies.mockResolvedValueOnce(movies)
-    const { getByText } = render(
-     <MemoryRouter>
-        <App />
-      </MemoryRouter>)
+    getMovies.mockResolvedValueOnce({
+      "id": 475430,
+      "poster_path": "https://image.tmdb.org/t/p/original//tI8ocADh22GtQFV28vGHaBZVb0U.jpg",
+      "backdrop_path": "https://image.tmdb.org/t/p/original//o0F8xAt8YuEm5mEZviX5pEFC12y.jpg",
+      "title": "Artemis Fowl",
+      "average_rating": 5.6,
+      "release_date": "2020-06-12"
+    })
+    
+    const { getByText } = render(appElement)
+
     const errorPage = getByText('This is the Error Page')
     expect(errorPage).toBeInTheDocument()
-    const title = await waitFor(() => getByTestId('movie-title'))
+    const title = await waitFor(() => getByText('Artemis Fowl'))
+    const releaseDate = await waitFor(() => getByText('2020-06-12'))
     expect(title).toBeInTheDocument()
+    expect(releaseDate).toBeInTheDocument()
     // expect(firstMovie).toBeInTheDocument();
   })
 })
