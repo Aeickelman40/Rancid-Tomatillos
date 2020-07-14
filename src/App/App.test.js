@@ -1,33 +1,41 @@
 import { getMovies } from '../FetchedData/FetchedData' 
 import React from 'react';
-import { render, waitFor, fireEvent } from '@testing-library/react';
+import { render, waitFor, getByTestId, fireEvent } from '@testing-library/react';
 import App from './App';
 import Movies from '../Movies/Movies';
-import { BrowserRouter, MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 jest.mock('../FetchedData/FetchedData')
+let movies = {
+  "id": 475430,
+  "poster_path": "https://image.tmdb.org/t/p/original//tI8ocADh22GtQFV28vGHaBZVb0U.jpg",
+  "backdrop_path": "https://image.tmdb.org/t/p/original//o0F8xAt8YuEm5mEZviX5pEFC12y.jpg",
+  "title": "Artemis Fowl",
+  "average_rating": 5.6,
+  "release_date": "2020-06-12"
+}
 
 
 describe('App', () => {
   let appElement = null
-  let getMovies = null
+  // let getMovies = null
   
   beforeEach(() => {
 
-    getMovies = jest.fn().mockImplementation(() => {
-      return {
-        "id": 475430,
-        "poster_path": "https://image.tmdb.org/t/p/original//tI8ocADh22GtQFV28vGHaBZVb0U.jpg",
-        "backdrop_path": "https://image.tmdb.org/t/p/original//o0F8xAt8YuEm5mEZviX5pEFC12y.jpg",
-        "title": "Artemis Fowl",
-        "average_rating": 5.6,
-        "release_date": "2020-06-12"
-      }
-    });
+    // getMovies = jest.fn().mockImplementation(() => {
+    //   return {
+    //     "id": 475430,
+    //     "poster_path": "https://image.tmdb.org/t/p/original//tI8ocADh22GtQFV28vGHaBZVb0U.jpg",
+    //     "backdrop_path": "https://image.tmdb.org/t/p/original//o0F8xAt8YuEm5mEZviX5pEFC12y.jpg",
+    //     "title": "Artemis Fowl",
+    //     "average_rating": 5.6,
+    //     "release_date": "2020-06-12"
+    //   }
+    // });
 
     appElement = (
-      <BrowserRouter>
+      <MemoryRouter>
         <App />
-      </BrowserRouter>
+      </MemoryRouter>
 
     )
   })
@@ -49,12 +57,15 @@ describe('App', () => {
   })
 
   it('should render the fetched movies to the home page', async () => {
-    const { getByRole, getByText } = render(appElement)
-    // const fetchedMovies = await getMovies()
-
-    // console.log(fetchedMovies)
-    const { firstMovie } = await getByText('Artemis Fowl')    
-    expect(firstMovie).toBeInTheDocument();
+    getMovies.mockResolvedValueOnce(movies)
+    const { getByText } = render(
+     <MemoryRouter>
+        <App />
+      </MemoryRouter>)
+    const errorPage = getByText('This is the Error Page')
+    expect(errorPage).toBeInTheDocument()
+    const title = await waitFor(() => getByTestId('movie-title'))
+    expect(title).toBeInTheDocument()
+    // expect(firstMovie).toBeInTheDocument();
   })
-  
 })

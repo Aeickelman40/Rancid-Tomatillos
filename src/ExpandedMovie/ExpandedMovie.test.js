@@ -13,11 +13,11 @@ describe('ExpandedMovie', () => {
 
     beforeEach(() => {
         ExpandedMovieElement = (
-            <BrowserRouter>
+            <MemoryRouter>
                 <ExpandedMovie 
                     appState= { this.appState }
                 />
-            </BrowserRouter>
+            </MemoryRouter>
         )
     })
 
@@ -26,7 +26,7 @@ describe('ExpandedMovie', () => {
     })
 
       describe('Unit Tests', () => {
-    it('Should render the expanded movie page', async () => {
+    it('Should render the expanded movie page', () => {
       const { getByText } = render(ExpandedMovieElement)
       const tagLine = getByText('Tag Line')
     
