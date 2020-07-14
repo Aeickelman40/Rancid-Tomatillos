@@ -1,4 +1,3 @@
-// Use async/await for all fetch calls
 
 export const getMovies = async () => {
     const response = await fetch(
@@ -79,7 +78,7 @@ export const getMovieComments = async (movieId) => {
 }
 
 export const addMovieComment = async (movieId, userId, comment, userName) => {
-    const response = await fetch(`http://localhost:3001/comments/${movieId}`, {
+    const request = {
         "method": "POST",
         "headers": {
             "content-type": "application/json"
@@ -91,7 +90,7 @@ export const addMovieComment = async (movieId, userId, comment, userName) => {
             "movie_id": movieId
         })
     }
-)
+    const response = await fetch(`http://localhost:3001/comments${movieId}`, request)
     const message = await response.json()
     return message;
 }
