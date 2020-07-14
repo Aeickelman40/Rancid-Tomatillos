@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getIndividualMovieData, addMovieRating, deleteMovieRating } from '../FetchedData/FetchedData'
+import { getIndividualMovieData, addMovieRating, deleteMovieRating, getMovieComments, addMovieComment } from '../FetchedData/FetchedData'
 import { render } from '@testing-library/react';
 
 class ExpandedMovie extends Component {
@@ -8,8 +8,9 @@ class ExpandedMovie extends Component {
         this.state = {
             movieData: {}, 
             userRating: {
-                rating: null
+                rating: null,
             },
+            userComments: null
         }
     }
     
@@ -39,6 +40,11 @@ class ExpandedMovie extends Component {
         updateRating = (rating) => {
             this.setState( { userRating: rating.target.value }  )
         }
+
+        updateComment = (comment) => {
+            this.setState( { userComments: comment.target.value })
+            console.log(this.state)
+        }
         
         submitNewRating = (e) => {
             e.preventDefault();
@@ -56,14 +62,54 @@ class ExpandedMovie extends Component {
             return (
                 <form className="submit-rating-form">
                 {this.toggleRatingButtons()}
+                {this.addCommentsForm()}
                 </form>
                 )
             }
         }
 
+        checkIfCommented = () => {
+            if(this.props.appState.userComments) {
+                return (
+                    <h5>What other people have thought about this movie:
+                    {this.state.userComments.author} said the following 
+                    {this.state.userComments.comment}
+                    </h5>
+                )
+            } else {
+                return (
+                    <h5>Looks like nobody has any opinions on this movie....yet!</h5> 
+                )     
+            }
+        }
+
+        addCommentsForm = () => {
+            if(this.props.appState.isLoggedIn) {
+                return (
+                    <form>
+                        <input
+                        value={this.state.input}
+                        type='text'
+                        placeholder='Add comments to this movie here'
+                        onChange={this.updateComment} 
+                        />
+                        <button onClick={this.submitComment}>Add Comment</button>
+                    </form>
+                )
+            }
+        }
+
+     submitComment = (e) => {
+        e.preventDefault();
+        const usersComment = this.state.userComments;
+        const userId = this.props.appState.userInfo.userId;
+        const userName = this.props.appState.userInfo.userName;
+        const movieId = this.state.movieData.movie.id;
+        addMovieComment(movieId, userId, usersComment, userName)
+     }   
+
     toggleRatingButtons = () => {
         const matchingMovie = this.props.appState.userInfo.userRatings.find(rating => rating.movie_id === this.state.movieData.movie.id);
-        console.log(matchingMovie)
             if(matchingMovie) {
                 return (
                     <section>
@@ -94,14 +140,10 @@ class ExpandedMovie extends Component {
         }
         
         render() {
-            const { isLoggedIn } = this.props.appState  
             if (this.state.movieData.movie) {
             const { id, title, poster_path, release_date, overview, genres, budget, revenue, runtime, tagline, average_rating} =
-                this.state.movieData.movie 
-            const movieRating = this.state.userRating.rating 
-            console.log(movieRating)       
-                  
-           return  (
+                this.state.movieData.movie                   
+            return  (
                <section id={id }>
                    <section
                     style={{
@@ -122,6 +164,7 @@ class ExpandedMovie extends Component {
                    <h5>Revenue:{revenue}</h5>
                    <h5>Runtime:{runtime}</h5>
                    <h5>Average Rating:{Math.round(average_rating)}</h5>
+                   {this.checkIfCommented()}
                    {this.checkIfLoggedIn()}
                 </section>
            )   

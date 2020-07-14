@@ -14,7 +14,7 @@ export const getIndividualMovieData = async (movieId) => {
         `https://rancid-tomatillos.herokuapp.com/api/v2/movies/${movieId}`
     );
     const movie = await response.json();
-    return movie
+    return movie;
 }
 
 export const postLogin = async (email, password) => {   
@@ -70,6 +70,30 @@ export const deleteMovieRating = async (userId, movieId) => {
     )
     const data = await response;
     return data;
+}
+
+export const getMovieComments = async (movieId) => {
+    const response = await fetch(`http://localhost:3001/comments/${movieId}`)
+    const message = await response.json();
+    return message;
+}
+
+export const addMovieComment = async (movieId, userId, comment, userName) => {
+    const response = await fetch(`http://localhost:3001/comments/${movieId}`, {
+        "method": "POST",
+        "headers": {
+            "content-type": "application/json"
+        }, 
+        "body": JSON.stringify({
+            "user_id": userId,
+            "author": userName,
+            "comment": comment,
+            "movie_id": movieId
+        })
+    }
+)
+    const message = await response.json()
+    return message;
 }
 
 
