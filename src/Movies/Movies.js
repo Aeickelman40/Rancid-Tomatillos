@@ -29,6 +29,7 @@ import './Movies.css'
                 className='main-page'
                 data-testid='all-movies'>
                 { moviesInfo }
+                <p>I am a movie</p>
             </section>
         )    
     } else {
