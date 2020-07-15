@@ -26,7 +26,10 @@ function Movie(props) {
     
     return (
         
-            <NavLink to={`${/movie/}${id}`}>
+            <NavLink 
+            to={`${/movie/}${id}`}
+            data-testid="movie-link"
+            >
               <button 
                 name='movieId' 
                 value={ id } 
