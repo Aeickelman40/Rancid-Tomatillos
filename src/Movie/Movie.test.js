@@ -38,7 +38,7 @@ describe('Movie', () => {
         movieElement=(
             <MemoryRouter>
                 <Movie 
-                    key={ movie.id } 
+                    // key={ movie.id } 
                     movie={ movie } 
                     onClick={ onClick } 
                     appState={ appState } 

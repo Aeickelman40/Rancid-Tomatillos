@@ -11,8 +11,6 @@ function Movie(props) {
     const { onClick, clickHandler, isMovieAFavorite, movie } = props
     const { userRatings, userFavorites } = props.appState.userInfo
     const { isLoggedIn } = (props.appState)
-    console.log(isMovieAFavorite(userFavorites, movie));
-    
     let movieRating= {rating: null}
     
     if (props.appState.isLoggedIn) {
