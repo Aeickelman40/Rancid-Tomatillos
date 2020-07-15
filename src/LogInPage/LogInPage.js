@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './LogInPage.css';
-import { postLogin } from '../FetchedData/FetchedData'
+import { postLogin, getFavoriteMovies } from '../FetchedData/FetchedData'
 import { Link } from 'react-router-dom';
 import { getUserRatings } from '../FetchedData/FetchedData'
 
@@ -14,6 +14,7 @@ class LogInPage extends Component {
             userName: props.userInfo.userName,
             userId: props.userInfo.userId,
             userRatings: null,
+            userFavorites: null,
             updateAppState: props.updateAppState,
             UpdateAppState: props.appState
         }
@@ -40,7 +41,16 @@ class LogInPage extends Component {
 
         async putUserRatingsInState() {
             const userRatings = await getUserRatings()
+            
             return userRatings
+        }
+
+        async putUserFavoritesInState() {
+            const userFavorites =  await getFavoriteMovies()            
+            console.log(userFavorites);
+            
+            return userFavorites
+            
         }
 
         componentDidMount() {
@@ -50,9 +60,13 @@ class LogInPage extends Component {
                 }))
                 .then(data => console.log(this.state))
                 .catch(err => console.error(err))
+            this.putUserFavoritesInState()
+                .then(data => this.setState({
+                    userFavorites: data.favorites
+                }))
         }
         
-        render () { 
+        render () {             
             return (
                 <section 
                     className="main-login"
