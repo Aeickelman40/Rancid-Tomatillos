@@ -63,10 +63,10 @@ class LogInPage extends Component {
                 }))
                 .then(data => console.log(this.state))
                 .catch(err => console.error(err))
-            this.putUserFavoritesInState()
-                .then(data => this.setState({
-                    userFavorites: data.favorites
-                }))
+            // this.putUserFavoritesInState()
+            //     .then(data => this.setState({
+            //         userFavorites: data.favorites
+            //     }))
         }
         
         render () {             

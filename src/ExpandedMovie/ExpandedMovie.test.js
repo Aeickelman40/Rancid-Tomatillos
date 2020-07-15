@@ -10,7 +10,6 @@ jest.mock('../FetchedData/FetchedData')
 
 
 describe('ExpandedMovie', () => {
-
     let ExpandedMovieElement;
 
     beforeEach(() => {
@@ -20,39 +19,66 @@ describe('ExpandedMovie', () => {
             </MemoryRouter>
         )
     })
+    
+    it('should be true', () => {
+            expect(true).toEqual(true);
+        })
 
-    it.skip('should be true', () => {
-        expect(true).toEqual(true);
-    })
+    it.skip('Should render the expanded movie page', async () => {
+        getIndividualMovieData.mockResolvedValueOnce({
+            "movie": {
+                "id": 475430,
+                "title": "Artemis Fowl",
+                "poster_path": "https://image.tmdb.org/t/p/original//tI8ocADh22GtQFV28vGHaBZVb0U.jpg",
+                "backdrop_path": "https://image.tmdb.org/t/p/original//o0F8xAt8YuEm5mEZviX5pEFC12y.jpg",
+                "release_date": "2020-06-12",
+                "overview": "Artemis Fowl is a 12-year-old genius and descendant of a long line of criminal masterminds. He soon finds himself in an epic battle against a race of powerful underground fairies who may be behind his father's disappearance.",
+                "genres": [
+                    "Adventure",
+                    "Fantasy",
+                    "Science Fiction",
+                    "Family"
+                ],
+                "budget": 125000000,
+                "revenue": 0,
+                "runtime": 95,
+                "tagline": "Remember the name",
+                "average_rating": 3.6666666666666665
+            }
+        })
 
-      describe('Unit Tests', () => {
-    it.skip('Should render the expanded movie page', () => {
       const { getByText } = render(ExpandedMovieElement)
-      const tagLine = getByText('Tag Line')
+      const tagLine = await waitFor(() => getByText("Remember the name"))
     
       expect(tagLine).toBeInTheDocument();
     });
-    })
 
-    it('should render the users ratings to the page', async () => {
+    it.skip('should render the users ratings to the page', async () => {
         getIndividualMovieData.mockResolvedValueOnce({
-                id: 1,
-                title: "Movie Title",
-                poster_path: "someURL",
-                backdrop_path: "someURL",
-                release_date: "2019-12-04",
-                overview: "Some overview",
-                average_rating: 6,
-                genres: [{
-                    id: 18,
-                    name: "Drama"
-                }],
-                budget: 63000000,
-                revenue: 100853753,
-                runtime: 139,
-                tagline: "Movie Tagline"
+            "movie": {
+                "id": 475430,
+                "title": "Artemis Fowl",
+                "poster_path": "https://image.tmdb.org/t/p/original//tI8ocADh22GtQFV28vGHaBZVb0U.jpg",
+                "backdrop_path": "https://image.tmdb.org/t/p/original//o0F8xAt8YuEm5mEZviX5pEFC12y.jpg",
+                "release_date": "2020-06-12",
+                "overview": "Artemis Fowl is a 12-year-old genius and descendant of a long line of criminal masterminds. He soon finds himself in an epic battle against a race of powerful underground fairies who may be behind his father's disappearance.",
+                "genres": [
+                    "Adventure",
+                    "Fantasy",
+                    "Science Fiction",
+                    "Family"
+                ],
+                "budget": 125000000,
+                "revenue": 0,
+                "runtime": 95,
+                "tagline": "Remember the name",
+                "average_rating": 3.6666666666666665
+            }
         })
 
         const { getByText } = render(ExpandedMovieElement)
+        const selectedMovie = await getByText("Artemis Fowl")
+        expect(selectedMovie).toBeInTheDocument()
+
     })
 })
