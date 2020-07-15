@@ -94,7 +94,6 @@ class ExpandedMovie extends Component {
         }
         
         render() {
-            const { isLoggedIn } = this.props.appState  
             if (this.state.movieData.movie) {
             const { id, title, poster_path, release_date, overview, genres, budget, revenue, runtime, tagline, average_rating} =
                 this.state.movieData.movie 

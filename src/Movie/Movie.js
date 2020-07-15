@@ -1,11 +1,18 @@
 import React from 'react';
 import './Movie.css';
 import { NavLink } from 'react-router-dom'
+import favoriteHeart from '../images/favorited.png';
+import notFavoriteHeart from '../images/notFavorited.png';
+
+
 function Movie(props) {   
-    const {id, backdrop_path, release_date, average_rating, title} = props.movie
-    const { onClick } = props
-    const { userRatings } = props.appState.userInfo
+    
+    const { id, backdrop_path, release_date, average_rating, title } = props.movie
+    const { onClick, clickHandler, isMovieAFavorite, movie } = props
+    const { userRatings, userFavorites } = props.appState.userInfo
     const { isLoggedIn } = (props.appState)
+    console.log(isMovieAFavorite(userFavorites, movie));
+    
     let movieRating= {rating: null}
     
     if (props.appState.isLoggedIn) {
@@ -14,9 +21,11 @@ function Movie(props) {
             movieRating = userRatings.find(rating => rating.movie_id === id) || {rating: 'You have not rated this movie'}            
         }   
     }       
-    let  rating = movieRating.rating
+    let  rating = movieRating.rating  
+    
     
     return (
+        
             <NavLink to={`${/movie/}${id}`}>
               <button 
                 name='movieId' 
@@ -43,6 +52,7 @@ function Movie(props) {
                             <p data-testid="movie-release-date">Release Date:{ release_date }</p>
                             <p data-testid="movie-rating">Average Rating:{ Math.round(average_rating) }</p>
                             { isLoggedIn && <p data-testid="your-movie-rating">Your Rating:{ rating }</p>}
+                            {/* { isLoggedIn && isMovieAFavorite(userFavorites, movie)} */}
                  </section>
                 </button>
             </NavLink>
