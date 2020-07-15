@@ -5,7 +5,7 @@ import { createMemoryHistory } from 'history'; // this is a dependency of React 
 import '@testing-library/jest-dom'
 import ExpandedMovie from './ExpandedMovie';
 
-// jest.mock('../FetchedData/FetchedData');
+
 
 describe('ExpandedMovie', () => {
 
