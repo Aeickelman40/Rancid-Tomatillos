@@ -94,6 +94,7 @@ export const addMovieComment = async (movieId, userId, comment, userName) => {
     const message = await response.json()
     return message;
 }
+
 export const getFavoriteMovies = async () => {
     const response = await fetch('http://localhost:3001/favorites')
     const userFavorites = await response.json()    

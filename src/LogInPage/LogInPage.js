@@ -33,9 +33,12 @@ class LogInPage extends Component {
             const login = await postLogin(email, password);  
             const {id, name } = login.user
             this.state.UpdateAppState({userId: id, userName: name, userRatings: this.state.userRatings})            
-            this.setState({ userId: id, userName: name, userRatings: this.state.userRatings })                                    
+            this.setState({ userId: id, userName: name, userRatings: this.state.userRatings }) 
+            // this.props.history.push('/')                                   
             } catch(error) {
                 this.setState({ error: error })
+                // alert('Incorrect email or password!')
+                // this.props.history.push('/login')
             }                        
         }
 
