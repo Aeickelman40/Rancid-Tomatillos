@@ -1,4 +1,3 @@
-// Use async/await for all fetch calls
 
 export const getMovies = async () => {
     const response = await fetch(
@@ -14,7 +13,7 @@ export const getIndividualMovieData = async (movieId) => {
         `https://rancid-tomatillos.herokuapp.com/api/v2/movies/${movieId}`
     );
     const movie = await response.json();
-    return movie
+    return movie;
 }
 
 export const postLogin = async (email, password) => {   
@@ -72,10 +71,35 @@ export const deleteMovieRating = async (userId, movieId) => {
     return data;
 }
 
+<<<<<<< HEAD
+export const getMovieComments = async (movieId) => {
+    const response = await fetch(`http://localhost:3001/comments/${movieId}`)
+    const message = await response.json();
+    return message;
+}
+
+export const addMovieComment = async (movieId, userId, comment, userName) => {
+    const request = {
+        "method": "POST",
+        "headers": {
+            "content-type": "application/json"
+        }, 
+        "body": JSON.stringify({
+            "user_id": userId,
+            "author": userName,
+            "comment": comment,
+            "movie_id": movieId
+        })
+    }
+    const response = await fetch(`http://localhost:3001/comments/${movieId}`, request)
+    const message = await response.json()
+    return message;
+=======
 export const getFavoriteMovies = async () => {
     const response = await fetch('http://localhost:3001/favorites')
     const userFavorites = await response.json()    
     return userFavorites
+>>>>>>> master
 }
 
 

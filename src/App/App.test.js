@@ -1,9 +1,9 @@
-import { getMovies } from '../FetchedData/FetchedData' 
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import App from './App';
 import Movies from '../Movies/Movies';
 import { MemoryRouter } from 'react-router-dom';
+import { getMovies } from '../FetchedData/FetchedData' 
 jest.mock('../FetchedData/FetchedData')
 
 

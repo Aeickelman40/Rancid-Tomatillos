@@ -99,7 +99,6 @@ class App extends Component {
     
     return this.state.movies ?
     <main className="App">
-      <p>Hello</p>
       <Route path = '/' render = { () =>  <Header onClick={ this.clickHandler } appState={ this.state } /> }/>
       <Route exact path = '/' render = { () =>  <Movies movies={ this.state.movies} onClick={ this.clickHandler } appState={ this.state } clickHandler={ this.renderCorrectHeartImage } /> }/>
       <Route exact path = '/login' render =  { () => <LogInPage userInfo={ this.state.userInfo } updateAppState={ this.userLoggedIn } appState={ this.appState }/> }/>
