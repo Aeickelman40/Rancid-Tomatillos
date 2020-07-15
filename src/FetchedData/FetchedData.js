@@ -90,7 +90,7 @@ export const addMovieComment = async (movieId, userId, comment, userName) => {
             "movie_id": movieId
         })
     }
-    const response = await fetch(`http://localhost:3001/comments${movieId}`, request)
+    const response = await fetch(`http://localhost:3001/comments/${movieId}`, request)
     const message = await response.json()
     return message;
 }

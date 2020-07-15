@@ -2,7 +2,7 @@ import React from 'react';
 import { render, getByTestId, fireEvent } from '@testing-library/react' 
 import '@testing-library/jest-dom'
 import LogInPage from './LogInPage'
-import FetchedData from './FetchedData'
+import FetchedData from '../FetchedData/FetchedData'
 import { MemoryRouter } from 'react-router-dom'
 
 describe('LoginPage', () => {

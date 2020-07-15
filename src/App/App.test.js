@@ -1,9 +1,9 @@
-import { getMovies } from '../FetchedData/FetchedData' 
 import React from 'react';
 import { render, waitFor, getByTestId, fireEvent } from '@testing-library/react';
 import App from './App';
 import Movies from '../Movies/Movies';
 import { MemoryRouter } from 'react-router-dom';
+import { getMovies } from '../FetchedData/FetchedData' 
 jest.mock('../FetchedData/FetchedData')
 let movies = {
   "id": 475430,
@@ -19,7 +19,7 @@ describe('App', () => {
   let appElement = null
   // let getMovies = null
   
-  beforeEach(() => {
+  // beforeEach(() => {
 
     // getMovies = jest.fn().mockImplementation(() => {
     //   return {
@@ -32,12 +32,12 @@ describe('App', () => {
     //   }
     // });
 
-    appElement = (
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
+    // appElement = (
+    //   <MemoryRouter>
+    //     <App />
+    //   </MemoryRouter>
 
-    )
+    // )
   })
 
   it('should equal true', () => {
@@ -57,15 +57,22 @@ describe('App', () => {
   })
 
   it('should render the fetched movies to the home page', async () => {
-    getMovies.mockResolvedValueOnce(movies)
+    getMovies.mockResolvedValueOnce({
+              "id": 475430,
+              "poster_path": "https://image.tmdb.org/t/p/original//tI8ocADh22GtQFV28vGHaBZVb0U.jpg",
+              "backdrop_path": "https://image.tmdb.org/t/p/original//o0F8xAt8YuEm5mEZviX5pEFC12y.jpg",
+              "title": "Artemis Fowl",
+              "average_rating": 5.6,
+              "release_date": "2020-06-12"
+            })
     const { getByText } = render(
      <MemoryRouter>
         <App />
       </MemoryRouter>)
-    const errorPage = getByText('This is the Error Page')
-    expect(errorPage).toBeInTheDocument()
-    const title = await waitFor(() => getByTestId('movie-title'))
+    // const errorPage = getByText('This is the Error Page')
+    // expect(errorPage).toBeInTheDocument()
+    const title = await waitFor(() => getByText('Artemis Fowl'))
     expect(title).toBeInTheDocument()
     // expect(firstMovie).toBeInTheDocument();
   })
-})
+// })

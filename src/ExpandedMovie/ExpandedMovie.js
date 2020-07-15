@@ -28,76 +28,76 @@ class ExpandedMovie extends Component {
             movieInfo();
         }
         
-        removeRating = (e) => {
-            e.preventDefault();
-            const usersRating = this.state.userRating
-            const userId = this.props.appState.userInfo.userId
+    removeRating = (e) => {
+        e.preventDefault();
+        const usersRating = this.state.userRating
+        const userId = this.props.appState.userInfo.userId
 
-            const matchingMovie = this.props.appState.userInfo.userRatings.find(rating => rating.movie_id === this.state.movieData.movie.id);
-            deleteMovieRating(userId, matchingMovie.id);
-        }
+        const matchingMovie = this.props.appState.userInfo.userRatings.find(rating => rating.movie_id === this.state.movieData.movie.id);
+        deleteMovieRating(userId, matchingMovie.id);
+    }
         
-        updateRating = (rating) => {
-            this.setState( { userRating: rating.target.value }  )
-        }
+    updateRating = (rating) => {
+        this.setState( { userRating: rating.target.value }  )
+    }
 
-        updateComment = (comment) => {
-            this.setState( { userComments: comment.target.value })
-            console.log(this.state)
-        }
+    updateComment = (comment) => {
+        this.setState( { userComments: comment.target.value })
+        console.log(this.state)
+    }
         
-        submitNewRating = (e) => {
-            e.preventDefault();
-            const usersRating = this.state.userRating
-            const userId = this.props.appState.userInfo.userId
-            const movieId = this.state.movieData.movie.id
-            this.setState( {
-                movieIsRated: true
-            })
-            addMovieRating(usersRating, userId, movieId)
-        }
+    submitNewRating = (e) => {
+        e.preventDefault();
+        const usersRating = this.state.userRating
+        const userId = this.props.appState.userInfo.userId
+        const movieId = this.state.movieData.movie.id
+        this.setState( {
+            movieIsRated: true
+        })
+        addMovieRating(usersRating, userId, movieId)
+    }
 
-        checkIfLoggedIn = () => {
-            if(this.props.appState.isLoggedIn) {
+    checkIfLoggedIn = () => {
+        if(this.props.appState.isLoggedIn) {
+        return (
+            <form className="submit-rating-form">
+            {this.toggleRatingButtons()}
+            {this.addCommentsForm()}
+            </form>
+            )
+        }
+    }
+
+    checkIfCommented = () => {
+        if(this.props.appState.userComments) {
             return (
-                <form className="submit-rating-form">
-                {this.toggleRatingButtons()}
-                {this.addCommentsForm()}
-                </form>
-                )
-            }
-        }
-
-        checkIfCommented = () => {
-            if(this.props.appState.userComments) {
-                return (
-                    <h5>What other people have thought about this movie:
-                    {this.state.userComments.author} said the following 
-                    {this.state.userComments.comment}
-                    </h5>
-                )
-            } else {
-                return (
-                    <h5>Looks like nobody has any opinions on this movie....yet!</h5> 
+                <h5>What other people have thought about this movie:
+                {this.state.userComments.author} said the following 
+                {this.state.userComments.comment}
+                </h5>
+            )
+        } else {
+            return (
+                <h5>Looks like nobody has any opinions on this movie....yet!</h5> 
                 )     
-            }
         }
+    }
 
-        addCommentsForm = () => {
-            if(this.props.appState.isLoggedIn) {
-                return (
-                    <form>
-                        <input
-                        value={this.state.input}
-                        type='text'
-                        placeholder='Add comments to this movie here'
-                        onChange={this.updateComment} 
-                        />
-                        <button onClick={this.submitComment}>Add Comment</button>
-                    </form>
-                )
-            }
+    addCommentsForm = () => {
+        if(this.props.appState.isLoggedIn) {
+            return (
+                <form>
+                    <input
+                    value={this.state.input}
+                    type='text'
+                    placeholder='Add comments to this movie here'
+                    onChange={this.updateComment} 
+                    />
+                    <button onClick={this.submitComment}>Add Comment</button>
+                </form>
+            )
         }
+    }
 
      submitComment = (e) => {
         e.preventDefault();
