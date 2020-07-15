@@ -63,6 +63,7 @@ describe ('Movies', () => {
         const { userRatings } = moviesElement.props.children.props.appState.userInfo
         const { getByTestId } = render(moviesElement)
         const movie = getByTestId('all-movies');
+        expect(movie).toBeInTheDocument()        
         expect(userRatings).toEqual(null)        
     })
 })

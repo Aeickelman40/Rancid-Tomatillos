@@ -8,7 +8,7 @@ import App from '../App/App';
 
 
 function Header(props) { 
-    const { userInfo, isLoggedIn }=props.appState
+    const { userInfo, isLoggedIn } = props.appState
     const { onClick } = props
     // const { isLoggedIn } = props.appState
     return (

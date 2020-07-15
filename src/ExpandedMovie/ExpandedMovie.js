@@ -120,7 +120,7 @@ class ExpandedMovie extends Component {
             } else if (!matchingMovie) {
                 return (
                     <section>
-                        <label for="rate-movie">Rate Movie: </label>
+                        <label htmlFor="rate-movie">Rate Movie: </label>
                         <select value={this.state.userRating} onChange={this.updateRating} required>
                             <option value="0">--Select a Rating--</option>
                             <option value="1">1</option>

@@ -11,8 +11,6 @@ function Movie(props) {
     const { onClick, clickHandler, isMovieAFavorite, movie } = props
     const { userRatings, userFavorites } = props.appState.userInfo
     const { isLoggedIn } = (props.appState)
-    console.log(isMovieAFavorite(userFavorites, movie));
-    
     let movieRating= {rating: null}
     
     if (props.appState.isLoggedIn) {
@@ -26,7 +24,10 @@ function Movie(props) {
     
     return (
         
-            <NavLink to={`${/movie/}${id}`}>
+            <NavLink 
+            to={`${/movie/}${id}`}
+            data-testid="movie-link"
+            >
               <button 
                 name='movieId' 
                 value={ id } 

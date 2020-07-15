@@ -1,11 +1,10 @@
 import React from 'react';
-import {render, getByText, mock, fireEvent} from '@testing-library/react';
+import {render, waitFor, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom'
 import Header from './Header';
 import { MemoryRouter } from 'react-router-dom';
-import { postLogIn } from'../FetchedData/FetchedData'
+import { postLogin } from'../FetchedData/FetchedData'
 jest.mock('../FetchedData/FetchedData')
-// import App from '../App/App';
 
 describe('Header', () => {
     let onClick = null
@@ -54,8 +53,8 @@ describe('Header', () => {
                 expect(onClick).toBeCalledTimes(1)    
     })
 
-    it('should render a users name if they are logged in', () => {
-        postLogIn.mockResolvedValueOnce({
+    it('should render a users name if they are logged in', async () => {
+        postLogin.mockResolvedValueOnce({
                 user: {
                     id: 1,
                     name: "Alan",
@@ -64,12 +63,13 @@ describe('Header', () => {
         })
         const { getByText } = render(
         <MemoryRouter>
-            <Header />
+            <Header appState={ {userInfo: {userEmail: 'email@email.com', userFavorites: [], userId: 1, userName: 'Alan', userRatings: []}} }/>
         </MemoryRouter>
         )
-        const sampleUser = getByText('sample user')
-        expect(sampleUser).toBeInTheDocument()
+        
+        await waitFor(() => {
+        const sampleUserName = getByText('Welcome Alan')
+        expect(sampleUserName).toBeInTheDocument()
+         })
     })
-
-
 })
