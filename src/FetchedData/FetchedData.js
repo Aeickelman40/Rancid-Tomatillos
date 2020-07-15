@@ -71,7 +71,6 @@ export const deleteMovieRating = async (userId, movieId) => {
     return data;
 }
 
-<<<<<<< HEAD
 export const getMovieComments = async (movieId) => {
     const response = await fetch(`http://localhost:3001/comments/${movieId}`)
     const message = await response.json();
@@ -94,12 +93,11 @@ export const addMovieComment = async (movieId, userId, comment, userName) => {
     const response = await fetch(`http://localhost:3001/comments/${movieId}`, request)
     const message = await response.json()
     return message;
-=======
+}
 export const getFavoriteMovies = async () => {
     const response = await fetch('http://localhost:3001/favorites')
     const userFavorites = await response.json()    
     return userFavorites
->>>>>>> master
 }
 
 

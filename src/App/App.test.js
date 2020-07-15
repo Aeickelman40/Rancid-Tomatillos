@@ -1,7 +1,6 @@
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
 import App from './App';
-import Movies from '../Movies/Movies';
+import { render, waitFor, fireEvent } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { getMovies } from '../FetchedData/FetchedData' 
 jest.mock('../FetchedData/FetchedData')
@@ -9,12 +8,12 @@ jest.mock('../FetchedData/FetchedData')
 
 describe('App', () => {
   let appElement = null
-  // let getMovies = null
   
   beforeEach(() => {
     appElement = (
       <MemoryRouter>
         <App />
+        
       </MemoryRouter>
     )
   })
@@ -23,8 +22,37 @@ describe('App', () => {
     expect(true).toEqual(true)
   })
 
-  it('should render login page when the login button is clicked', () => {
+  it('should render login page when the login button is clicked', async () => {
+    let location
+    getMovies.mockResolvedValueOnce(
+      [{
+        "id": 475430,
+        "poster_path": "https://image.tmdb.org/t/p/original//tI8ocADh22GtQFV28vGHaBZVb0U.jpg",
+        "backdrop_path": "https://image.tmdb.org/t/p/original//o0F8xAt8YuEm5mEZviX5pEFC12y.jpg",
+        "title": "Artemis Fowl",
+        "average_rating": 5.6,
+        "release_date": "2020-06-12"
+      }]
+    )
 
+    const { getByText, getByPlaceholderText } = render(appElement)
+    const errorPage = getByText('This is the Error Page')
+
+    expect(errorPage).toBeInTheDocument()
+
+    const title = await waitFor(() => getByText('Artemis Fowl'))
+    const loginButton = await waitFor(() => getByText('Login'))
+    
+    expect(title).toBeInTheDocument()
+    expect(loginButton).toBeInTheDocument()
+    
+    fireEvent.click(loginButton)
+    await waitFor(()=> {
+      const email = getByPlaceholderText("email address")
+      const password = getByPlaceholderText("password")
+      expect(email).toBeInTheDocument()
+      expect(password).toBeInTheDocument()
+    })
   })
 
   it('should be able to go back to the home page', () => {
