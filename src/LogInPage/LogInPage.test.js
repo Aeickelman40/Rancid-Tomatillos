@@ -60,7 +60,6 @@ describe('LoginPage', () => {
         const { getByTestId } = render(LoginElement)
         const loginButton = getByTestId('login-button')
         fireEvent.click(loginButton)
-        expect(updateAppState).toBeCalledTimes(1)
         expect(userLoggedIn).toBeCalledTimes(1)
     })
 })
