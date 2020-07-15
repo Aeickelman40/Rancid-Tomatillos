@@ -31,7 +31,7 @@ describe('App', () => {
 
   })
 
-  it('should be able to expand a movies information', () => {
+  it('should render an expanded movies information when a user clicks on the move', () => {
 
   })
 
