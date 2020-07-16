@@ -29,7 +29,7 @@ cd rancid-toms-backend
 
 
 
-Once you are in the recently cloned repositories, you have to install certain React dependencies in order for everything to compile correctly. This is done by running on both tabs:
+Once you are in the recently cloned repositories, you have to install certain React dependencies in order for everything to compile correctly. This is done by running the following command on both tabs:
 
 ```
 npm install
