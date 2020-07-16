@@ -5,7 +5,7 @@ import Header from '../Header/Header'
 import ExpandedMovie from '../ExpandedMovie/ExpandedMovie'
 import './App.css';
 import LogInPage from '../LogInPage/LogInPage';
-import { Route, NavLink, match, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { getMovies } from '../FetchedData/FetchedData'
 import favoriteHeart from '../images/favorited.png';
 import notFavoriteHeart from '../images/notFavorited.png';
@@ -95,7 +95,6 @@ class App extends Component {
      }
 
   render() {  
-    console.log('app state', this.state);
     
     return this.state.movies ?
     <main className="App">
