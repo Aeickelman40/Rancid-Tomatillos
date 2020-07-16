@@ -5,9 +5,11 @@
 
 .main-login {
     background-image: url('https://wallpapercave.com/wp/p4iaEa4.jpg');
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    box-shadow: 1px 1px 5px 0px #9a9a9a,
+    1px 2px 7px 0px #ededed;
     color: #fff;
     height: 80vh;
     display: flex;
@@ -20,17 +22,20 @@
     /* background-color: darkgrey; */
     backdrop-filter: blur(10px);
     border-radius: 5px;
-    box-shadow: 3px 3px 10px 0px rgba(0, 0, 0, 0.2);
-    height: 60%;
+    box-shadow: 1px 0px 0px 0px #9a9a9a, 0px 1px 3px 0px #ededed;    height: 60%;
     width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
 }
+h2 {
+    margin: 2%;
+}
 
 input {
     border-radius: 5px;
+    margin: 2%;
     padding: 2%;
     height: 5%;
     font-size: 12px;
@@ -39,6 +44,7 @@ input {
 
 .login-btn {
     border-radius: 5px;
+    box-shadow: 0 0 0 0 ;
     height: 10%;
     width: 60%;
 }
