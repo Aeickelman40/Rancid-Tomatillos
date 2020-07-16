@@ -45,3 +45,11 @@ npm start
 
 A compile message should appear in your terminal, and (depending on your browser) a new tab to the url (http://localhost:3000/) should appear. This is the homepage!
 Do with it what you will, but please be kind as this is a work in progress. 
+
+
+## In Action!
+
+![login-gif](https://user-images.githubusercontent.com/57731927/87616296-fd65e780-c6d1-11ea-9aff-841115686089.gif)
+
+![unique-movie-when-logged-in](https://user-images.githubusercontent.com/57731927/87616370-1a021f80-c6d2-11ea-9d8f-06c1a306fadc.gif)
+
