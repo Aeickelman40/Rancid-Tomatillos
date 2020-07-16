@@ -1,15 +1,12 @@
 import React from 'react';
 import './Movie.css';
 import { NavLink } from 'react-router-dom'
-import favoriteHeart from '../images/favorited.png';
-import notFavoriteHeart from '../images/notFavorited.png';
-
 
 function Movie(props) {   
     
     const { id, backdrop_path, release_date, average_rating, title } = props.movie
-    const { onClick, clickHandler, isMovieAFavorite, movie } = props
-    const { userRatings, userFavorites } = props.appState.userInfo
+    const { onClick } = props
+    const { userRatings } = props.appState.userInfo
     const { isLoggedIn } = (props.appState)
     let movieRating= {rating: null}
     

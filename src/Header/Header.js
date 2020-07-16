@@ -1,11 +1,7 @@
 import React from 'react'
 import tomato from '../images/tomImage.png';
 import './Header.css';
-// import { render } from '@testing-library/react';
-import { Route, NavLink, BrowserRouter} from 'react-router-dom';
-import LogInPage from '../LogInPage/LogInPage';
-import App from '../App/App';
-
+import { NavLink } from 'react-router-dom';
 
 function Header(props) { 
     const { userInfo, isLoggedIn } = props.appState

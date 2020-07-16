@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { getIndividualMovieData, addMovieRating, deleteMovieRating, getMovieComments, addMovieComment } from '../FetchedData/FetchedData'
-import { render } from '@testing-library/react';
+import { getIndividualMovieData, addMovieRating, deleteMovieRating, addMovieComment } from '../FetchedData/FetchedData'
 
 class ExpandedMovie extends Component {
     constructor(props) {
@@ -15,7 +14,6 @@ class ExpandedMovie extends Component {
     }
     
     componentDidMount(props) {
-        console.log(this.state)
         const {movieDoneLoading} = this.props       
         const movieId = this.props.params.id
         const movieInfo = async () =>  { 
@@ -30,7 +28,6 @@ class ExpandedMovie extends Component {
         
     removeRating = (e) => {
         e.preventDefault();
-        const usersRating = this.state.userRating
         const userId = this.props.appState.userInfo.userId
 
         const matchingMovie = this.props.appState.userInfo.userRatings.find(rating => rating.movie_id === this.state.movieData.movie.id);

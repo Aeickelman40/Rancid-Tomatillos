@@ -1,5 +1,5 @@
 import React from 'react';
-import {render, getByTestId} from '@testing-library/react';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import Movies from './Movies';
 import { BrowserRouter } from 'react-router-dom';
