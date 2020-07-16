@@ -38,7 +38,7 @@ function Movie(props) {
                  data-testid='background'
                     style={ {
                         backgroundImage: 'url(' + backdrop_path + ')',
-                        backgroundSize: 'contain',
+                        backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat'
                  }}>
                  </section>

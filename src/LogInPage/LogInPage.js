@@ -96,6 +96,7 @@ class LogInPage extends Component {
                     <button
                         onClick={ this.clickHandler  } 
                         data-testid = 'login-button'
+                        className='login-btn'
                     >
                         <Link to='/users/63' className='user-page'>Login</Link>
                     </button>

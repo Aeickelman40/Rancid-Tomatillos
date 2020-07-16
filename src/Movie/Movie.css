@@ -1,6 +1,6 @@
 a {
     height: 45%;
-    width: 30%;
+    width: 20%;
     margin: 20px;
 }
 
@@ -20,7 +20,7 @@ a {
 }
 
 .image-container {
-    height: 50%;
+    height: 55%;
     width: 100%;
     z-index: 1;
 }
@@ -28,8 +28,9 @@ a {
 .movie-description {
     background-color: lightblue;
     color: black;
-    font-size: 10px;
-    height: 40%;
+    font-size: 9px;
+    height: 35%;
+    padding: 3% 0 3% 0;
     z-index: 2;
 }
 

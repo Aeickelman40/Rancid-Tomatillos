@@ -6,24 +6,36 @@
     justify-content: space-between;
 }
 
+.header-image-container {
+    align-items: flex-start;
+    display: flex;
+    width: 28%
+}
+
 img {
     height: 14vh;
+    margin-left: 5%;
+    width: 20%
 }
 
 h2 {
     text-align: center;
+    width: 40%
 }
 
 .button-container {
+    align-items: center;
     display: flex;
     height: 100%;
     justify-content: space-around;
-    align-items: center;
-    width: 40%;
+    width: 30%;
 }
 
 button {
     background: #fff;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px 0px #9a9a9a,
+    1px 2px 7px 0px #ededed;
     cursor: pointer;
     height: 40%;
     width: 40%;

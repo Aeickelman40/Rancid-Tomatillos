@@ -12,7 +12,9 @@ function Header(props) {
                 className = "main-header"
                 data-testid="main-header"
                 >
-             <img src={tomato} alt="cartoon tomato"></img> 
+            <section className='header-image-container'>
+                <img src={tomato} alt="cartoon tomato"></img> 
+            </section>  
     <h2>Welcome {userInfo.userName}</h2> 
              <section className = "button-container">
                  <button 
