@@ -1,68 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Rancid-Tomatillos (in no way affiliated with a similarly named rating application)
 
-## Available Scripts
+The Rancid-Tomatillos project is a partial pair/solo project for Front End Module e students at the Turing School of Software and Design. The idea behind the project was to build an application that allowed users to view various data related to specific movies, and if logged in, a user should have unique interactions with each movie in the form of adding a rating, commenting, and adding to their list of favorites. The main goals of this project were to develop our first application using the React framework, add unique DOM elements based on React Routing, integrate testing unique to React, and create our own 'backend' server using Express in order to POST and GET additional information required for later iterations. 
 
-In the project directory, you can run:
+## Contributors
 
-### `npm start`
+[Alex Eickelman](https://github.com/Aeickelman40)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[Joe Haefling](https://github.com/Josephhaefling)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Installing / Getting started
 
-### `npm test`
+Clone down these two repositories; the first being our front end application, the second being the database which holds GET and POST requests for adding favorites and comments as a user:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+git clone git@github.com:Aeickelman40/Rancid-Tomatillos.git
 
-### `npm run build`
+git clone git@github.com:Josephhaefling/rancid-toms-backend.git
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Okay, now we have everything saved to your machine! The second part of the process is to compile your front end application (what the user will see), and enable the backend server to accept POST and GET requests related to favoriting a movie and adding comments. This will require opening multiple tabs within the terminal in order to launch both a compiler and backend server simulataneously. Hit cmd + t in order to open a new window within your terminal so that you can change into each unique directory.
+```
+cd rancid-tomatillos
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```
+cd rancid-toms-backend
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Once you are in the recently cloned repositories, you have to install certain React dependencies in order for everything to compile correctly. This is done by running on both tabs:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This should then download all required user dependencies in order for you, the user, to interact with the application! 
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+In order for you to actually view and interact with the application add the following command within your terminal when you are within the rancid-tomatillos directory:
 
-## Learn More
+```
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+A compile message should appear in your terminal, and (depending on your browser) a new tab to the url (http://localhost:3000/) should appear. This is the homepage!
+Do with it what you will, but please be kind as this is a work in progress. 
